@@ -3,6 +3,8 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+const lessMiddleware = require("less-middleware");
+const cssbeautify = require("cssbeautify");
 
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
@@ -17,6 +19,15 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(lessMiddleware(path.join(__dirname, 'less'), {
+  dest: path.join(__dirname, "public"),
+  preprocess: {
+    path: (pathname) => pathname.replace("/assets/css/", "/")
+  },
+  postprocess: {
+    css: (css) => cssbeautify(css)
+  },
+  debug:true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
