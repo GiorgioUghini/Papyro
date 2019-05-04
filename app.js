@@ -26,8 +26,7 @@ app.use(lessMiddleware(path.join(__dirname, 'less'), {
   },
   postprocess: {
     css: (css) => cssbeautify(css)
-  },
-  debug:true}));
+  }}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
