@@ -6,6 +6,10 @@ let logger = require('morgan');
 const lessMiddleware = require("less-middleware");
 const cssbeautify = require("cssbeautify");
 
+require("./models").initialize()
+  .then(() => console.log("Database ready"))
+  .catch((e) => console.error(e));
+
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
 
