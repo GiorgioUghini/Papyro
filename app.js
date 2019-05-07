@@ -10,9 +10,6 @@ require("./models").initialize()
   .then(() => console.log("Database ready"))
   .catch((e) => console.error(e));
 
-let indexRouter = require('./routes/index');
-let usersRouter = require('./routes/users');
-
 let app = express();
 
 // view engine setup
@@ -33,8 +30,8 @@ app.use(lessMiddleware(path.join(__dirname, 'less'), {
   }}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', require('./routes/index'));
+app.use("/api/books", require("./routes/api/books"));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
