@@ -14,7 +14,7 @@ router.post("/", asyncMiddleware( async (req, res, next) => {
   const authors = await Author.findAll({where: {
       id: {[Op.or]: req.body.authors}
     }});
-  if(!authors) return next("Author not found");
+  if(!authors.length===req.body.authors.length) return next("Author not found");
   const newBook = await Book.create(req.body);
   await newBook.setAuthors(authors);
   res.json(newBook);
