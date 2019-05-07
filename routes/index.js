@@ -3,7 +3,7 @@ let router = express.Router();
 const asyncMiddleware = require("../middlewares/asyncMiddleware");
 
 /* GET home page. */
-router.get('/', asyncMiddleware((req, res, next) => {
+router.get('/', asyncMiddleware( async (req, res, next) => {
   res.render('index', { title: 'Express' });
 }));
 
