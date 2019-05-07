@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   Book.associate = function(m){
-    m.book.belongsToMany(m.author);
+    m.book.belongsToMany(m.author, {through: "BookAuthor"});
   };
   return Book;
 };

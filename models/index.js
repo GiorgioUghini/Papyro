@@ -3,7 +3,7 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const out = {};
-const { db } = require("../config");
+const { db, force } = require("../config");
 
 const sequelize = new Sequelize(db.name, db.user, db.password, {
   host: db.host,
@@ -38,7 +38,7 @@ out.sequelize = sequelize;
 out.Sequelize = Sequelize;
 
 out.initialize = async () => {
-  await sequelize.sync();
+  await sequelize.sync({force});
 };
 
 module.exports = out;

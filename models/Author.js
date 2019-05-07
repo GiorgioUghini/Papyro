@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Book = sequelize.define("book", {
+  const Author = sequelize.define("author", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   Author.associate = function (m) {
-    m.author.belongsToMany(m.book);
+    m.author.belongsToMany(m.book, {through: "BookAuthor"});
   };
-  return Book;
+  return Author;
 };

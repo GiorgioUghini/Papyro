@@ -7,7 +7,8 @@ const common = {
     password: process.env.DB_PASSWORD || "papyro",
     name: process.env.DB_NAME || "papyro",
     port: process.env.DB_PORT || 5432
-  }
+  },
+  force: process.env.FORCE || false
 };
 
 const development = {
