@@ -5,28 +5,19 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    title: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false
     },
     picture: {
       type: DataTypes.STRING
     },
-    abstract: {
+    bio: {
       type: DataTypes.TEXT
-    },
-    interview: {
-      type: DataTypes.TEXT
-    },
-    facts: {
-      type: DataTypes.JSONB
-    },
-    isFavorite: {
-      type: DataTypes.BOOLEAN
     }
   });
-  Book.associate = function(m){
-    m.book.belongsToMany(m.author);
+  Author.associate = function (m) {
+    m.author.belongsToMany(m.book);
   };
   return Book;
 };
