@@ -31,6 +31,8 @@ module.exports = (sequelize, DataTypes) => {
     m.book.belongsToMany(m.user, {through: m.cart});
     m.book.belongsToMany(m.user, {through: m.reserve, uniqueKey: "unique"});
     m.book.hasOne(m.event);
+    m.book.belongsToMany(m.theme, {through: m.bookTheme});
+    m.book.belongsToMany(m.genre, {through: m.bookGenre});
   };
   return Book;
 };
