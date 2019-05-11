@@ -6,9 +6,36 @@ const Author = require("../../models").author;
 const Theme = require("../../models").theme;
 const Genre = require("../../models").genre;
 const Op = require("../../models").Sequelize.Op;
+const mapToArray = require("../../utils");
 
 router.get("/", asyncMiddleware( async (req, res, next) => {
-  const books = await Book.findAll();
+  let books = await Book.findAll({
+    include: [{
+      model: Author,
+      attributes: ["id"],
+      through: {
+        attributes: []
+      }
+    },{
+      model: Theme,
+      attributes: ["name"],
+      through: {
+        attributes: []
+      }
+    },{
+      model: Genre,
+      attributes: ["name"],
+      through: {
+        attributes: []
+      }
+    }]
+  });
+  books = JSON.parse(JSON.stringify(books));
+  for (let book of books){
+    book.authors = mapToArray(book.authors, "id");
+    if(book.themes) book.themes = mapToArray(book.themes, "name");
+    if(book.genres) book.genres = mapToArray(book.genres, "name");
+  }
   res.json(books);
 }));
 

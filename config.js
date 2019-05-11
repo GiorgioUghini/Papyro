@@ -8,7 +8,7 @@ const common = {
     name: process.env.DB_NAME || "papyro",
     port: process.env.DB_PORT || 5432
   },
-  force: process.env.FORCE || false
+  force: (process.env.FORCE==="true") || false
 };
 
 const development = {
