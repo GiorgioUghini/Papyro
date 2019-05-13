@@ -6,8 +6,28 @@ const Author = require("../../models").author;
 const Theme = require("../../models").theme;
 const Genre = require("../../models").genre;
 const Op = require("../../models").Sequelize.Op;
-const mapToArray = require("../../utils");
+const {mapToArray} = require("../../utils");
 
+/**
+ * @typedef Book
+ * @property {integer} id
+ * @property {string} title.required
+ * @property {string} picture - URL to the book's picture
+ * @property {string} abstract - short description of the book
+ * @property {string} interview - interview with the author
+ * @property {object} facts - an object with different facts about the book
+ * @property {boolean} isFavorite - indicates whether this book is one of our favourite
+ */
+
+/**
+ * Get all books
+ * @route GET /api/books
+ * @group books - Operations about books
+ * @param {string} title.query
+ * @param {string} password.query.required - user's password.
+ * @returns {object} 200 - An array of user info
+ * @returns {Error}  default - Unexpected error
+ */
 router.get("/", asyncMiddleware( async (req, res, next) => {
   let books = await Book.findAll({
     include: [{

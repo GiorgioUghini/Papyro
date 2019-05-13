@@ -5,12 +5,15 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 const lessMiddleware = require("less-middleware");
 const cssbeautify = require("cssbeautify");
+const swaggerOptions = require("./swagger");
 
 require("./models").initialize()
   .then(() => console.log("Database ready"))
   .catch((e) => console.error(e));
 
 let app = express();
+const expressSwagger = require("express-swagger-generator")(app);
+expressSwagger(swaggerOptions);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

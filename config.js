@@ -8,15 +8,17 @@ const common = {
     name: process.env.DB_NAME || "papyro",
     port: process.env.DB_PORT || 5432
   },
-  force: (process.env.FORCE==="true") || false
+  force: (process.env.FORCE==="true") || false,
 };
 
 const development = {
-  showErrors: true
+  showErrors: true,
+  host: "localhost:3100"
 };
 
 const production = {
-  showErrors: false
+  showErrors: false,
+  host: "papyro.com"
 };
 
 const env = process.env.NODE_ENV;
