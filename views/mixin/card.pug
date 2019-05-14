@@ -1,9 +1,9 @@
 mixin card
-    .column.flex.w-full.p-2(class='sm:w-1/2 md:w-1/3')
+    #card.column.flex.w-full.p-2(class='sm:w-1/2 md:w-1/3')
         .card.w-full.bg-white.overflow-hidden.shadow.rounded
             .card__header.h-48.w-full(class='sm:h-auto')
-                img.card__img.w-full.h-full(src='//source.unsplash.com/600x400/?nature')
+                img.card__img.w-full.h-full(src='%picture%')
             .card__body.p-4
-                .card__category.text-xs.font-bold.tracking-wide.uppercase Nature
-                h3.card__title.my-1 Card #{n} Title
-                p.card__content Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab incidunt.
+                .card__category.text-xs.font-bold.tracking-wide.uppercase %theme%
+                h3.card__title.my-1 %title%
+                p.card__content %abstract%

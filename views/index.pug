@@ -7,10 +7,10 @@ block content
         .row-wrap.px-4.containerx.max-w-xl.mx-auto
             h1.pb-4 Responsive Cards
             p.pb-4.text-sm.text-grey-darker Responsive 3 column cards layout, images from unsplash
-            .grid.row.flex.flex-wrap.-mx-2
-                .col-4
-                    +card
-                .col-4
-                    +card
-                .col-4
-                    +card
+            #cards-container.grid.row.flex.flex-wrap.-mx-2
+    .display-none
+        +card
+
+append js
+    script(src='/index.js')
+
