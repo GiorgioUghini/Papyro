@@ -1,10 +1,16 @@
 extends layout
+include mixin/navbar
+include mixin/card
 
 block content
-  .container
-      h1.title= title
-      .row
-          .col-6
-              p Hello
-          .col-6
-              p From bootstrap
+    .app.min-h-screen.font-sans.bg-grey-light.py-8
+        .row-wrap.px-4.containerx.max-w-xl.mx-auto
+            h1.pb-4 Responsive Cards
+            p.pb-4.text-sm.text-grey-darker Responsive 3 column cards layout, images from unsplash
+            .grid.row.flex.flex-wrap.-mx-2
+                .col-4
+                    +card
+                .col-4
+                    +card
+                .col-4
+                    +card
