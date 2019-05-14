@@ -3,7 +3,7 @@ require("dotenv").config();
 const common = {
   db: {
     host: process.env.DB_HOST || "localhost",
-    user: process.env.DB_HOST || "papyro",
+    user: process.env.DB_USER || "papyro",
     password: process.env.DB_PASSWORD || "papyro",
     name: process.env.DB_NAME || "papyro",
     port: process.env.DB_PORT || 5432
