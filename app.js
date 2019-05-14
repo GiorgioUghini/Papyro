@@ -6,6 +6,7 @@ let logger = require('morgan');
 const lessMiddleware = require("less-middleware");
 const cssbeautify = require("cssbeautify");
 const swaggerOptions = require("./swagger");
+const config = require("./config");
 
 require("./models").initialize()
   .then(() => console.log("Database ready"))
@@ -37,6 +38,7 @@ app.use('/', require('./routes/index'));
 app.use("/api/books", require("./routes/api/books"));
 app.use("/api/authors", require("./routes/api/authors"));
 app.use("/api/events", require("./routes/api/events"));
+app.use("/api/users", require("./routes/api/users"));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -46,8 +48,9 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
+  console.log(err);
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = process.env.NODE_ENV === 'production' ? {} : err;
 
   // render the error page
   res.status(err.status || 500);
