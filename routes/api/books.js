@@ -29,22 +29,29 @@ const {mapToArray} = require("../../utils");
  * @returns {Error}  default - Unexpected error
  */
 router.get("/", asyncMiddleware( async (req, res, next) => {
+  let {themes, genres, authors} = req.query;
+  themes = createWhere(themes);
+  genres = createWhere(genres);
+  authors = createWhere(authors);
   let books = await Book.findAll({
     include: [{
       model: Author,
       attributes: ["id"],
+      where: authors,
       through: {
         attributes: []
       }
     },{
       model: Theme,
       attributes: ["name"],
+      where: themes,
       through: {
         attributes: []
       }
     },{
       model: Genre,
       attributes: ["name"],
+      where: genres,
       through: {
         attributes: []
       }
@@ -85,3 +92,13 @@ router.post("/", asyncMiddleware( async (req, res, next) => {
 }));
 
 module.exports = router;
+
+function createWhere(str){
+  const where = {};
+  if(!str) return where;
+  const arr = str.split(",");
+  where.id = {
+    [Op.in]: arr
+  };
+  return where;
+}
