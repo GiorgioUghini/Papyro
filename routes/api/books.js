@@ -29,11 +29,16 @@ const {mapToArray} = require("../../utils");
  * @returns {Error}  default - Unexpected error
  */
 router.get("/", asyncMiddleware( async (req, res, next) => {
-  let {themes, genres, authors} = req.query;
+  let {themes, genres, authors, isFavorite} = req.query;
+  const where = {};
+  if(isFavorite==="true"){
+    where.isFavorite = true;
+  }
   themes = createWhere(themes);
   genres = createWhere(genres);
   authors = createWhere(authors);
   let books = await Book.findAll({
+    where,
     include: [{
       model: Author,
       attributes: ["id"],
