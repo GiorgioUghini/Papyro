@@ -38,6 +38,8 @@ app.use('/', require('./routes/index'));
 app.use("/api/books", require("./routes/api/books"));
 app.use("/api/authors", require("./routes/api/authors"));
 app.use("/api/events", require("./routes/api/events"));
+app.use("/api/genres", require("./routes/api/genres"));
+app.use("/api/themes", require("./routes/api/themes"));
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/reservations", require("./routes/api/reservations"));
 
