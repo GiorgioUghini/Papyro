@@ -3,23 +3,22 @@ let router = express.Router();
 const asyncMiddleware = require("../../middlewares/asyncMiddleware");
 const Event = require("../../models").event;
 const Book = require("../../models").book;
-const mapToArray = require("../../utils");
+const {mapToArray} = require("../../utils");
 const createError = require("http-errors");
+const Op = require("../../models").Sequelize.Op;
 
 router.get("/", asyncMiddleware( async (req, res, next) => {
-  let events = await Event.findAll({
-    include: [{
-      model: Book,
-      attributes: ["id"],
-      through: {
-        attributes: []
-      }
-    }]
-  });
-  events = JSON.parse(JSON.stringify(events));
-  for (let event of events){
-    event.books = mapToArray(event.books, "id");
+  const where = {};
+  const {startDate, endDate} = req.query;
+  if(startDate){
+    where.date = {
+      [Op.gt]: startDate,
+      [Op.lt]: endDate
+    }
   }
+  let events = await Event.findAll({
+    where
+  });
   res.json(events);
 }));
 
