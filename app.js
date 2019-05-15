@@ -39,6 +39,7 @@ app.use("/api/books", require("./routes/api/books"));
 app.use("/api/authors", require("./routes/api/authors"));
 app.use("/api/events", require("./routes/api/events"));
 app.use("/api/users", require("./routes/api/users"));
+app.use("/api/reservations", require("./routes/api/reservations"));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
