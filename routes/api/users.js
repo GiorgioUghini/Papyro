@@ -6,6 +6,7 @@ const createError = require("http-errors");
 const jwt = require("jsonwebtoken");
 const {jwtSecret} = require("../../config");
 const bcrypt = require("bcrypt");
+const authMiddleware = require("../../middlewares/requiresAuth");
 
 router.post("/register", asyncMiddleware(async (req, res, next) => {
   const {email, password} = req.body;
@@ -24,6 +25,16 @@ router.post("/login", asyncMiddleware(async(req, res, next) => {
   const token = jwt.sign({id: user.id, email}, jwtSecret);
   await User.update({token}, {where: {id: user.id}, fields:["token"]});
   res.json({jwt: token});
+}));
+
+router.get("/logout", authMiddleware, asyncMiddleware(async (req, res, next) => {
+  await User.update({
+    token: null
+    },{
+      where: {id: req.user.id},
+      fields: ["token"]
+  });
+  res.json({msg:"ok"});
 }));
 
 module.exports = router;
