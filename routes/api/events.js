@@ -3,7 +3,6 @@ let router = express.Router();
 const asyncMiddleware = require("../../middlewares/asyncMiddleware");
 const Event = require("../../models").event;
 const Book = require("../../models").book;
-const {mapToArray} = require("../../utils");
 const createError = require("http-errors");
 const Op = require("../../models").Sequelize.Op;
 
