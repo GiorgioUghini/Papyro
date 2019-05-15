@@ -3,12 +3,11 @@ include mixin/navbar
 include mixin/card
 
 block content
-    .app.min-h-screen.font-sans.bg-grey-light.py-8
-        .row-wrap.px-4.containerx.max-w-xl.mx-auto
-            h1.pb-4 Responsive Cards
-            p.pb-4.text-sm.text-grey-darker Responsive 3 column cards layout, images from unsplash
-            #cards-container.grid.row.flex.flex-wrap.-mx-2
-    .display-none
+    .container
+        .row
+            h1.title.m-auto Bootstrap cards here!
+        #cards-container.row
+    .d-none
         +card
 
 append js
