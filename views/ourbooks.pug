@@ -1,0 +1,21 @@
+extends layout
+include mixin/card
+include mixin/headline
+
+block head
+    link(rel='stylesheet', href='assets/css/index.css')
+
+block headline
+    +headline("I nostri libri", "Scopri i nostri libri attualmente disponibili. Scegli tra centinaia di titoli in esclusiva su Papyro!", "clickme", "#", "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80")
+
+block content
+    .container
+        .row
+            h1.title.m-auto Bootstrap cards here!
+        #cards-container.row
+    .d-none
+        +card
+
+append js
+    script(src='assets/js/ourbooks.js')
+

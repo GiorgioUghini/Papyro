@@ -13,6 +13,6 @@ $.ajax({
         });
     },
     error: function(richiesta,stato,errori){
-        alert(1);
+        alert("Error");
     }
 });
