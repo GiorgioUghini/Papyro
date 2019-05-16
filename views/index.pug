@@ -1,11 +1,16 @@
 extends layout
 include mixin/card
 include mixin/headline
+include mixin/bwHeadline
+
+block head
+    link(rel='stylesheet', href='assets/css/index.css')
 
 block headline
-    +headline("Benvenuti", "Questa e una libreria bla bla", "clickme", "#")
+    +headline("Benvenuti", "Questa e una libreria bla bla", "clickme", "#", "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1082&q=80")
 
 block content
+    +bwDoubleHeadline("Servizio di prenotazione libri", "Con il nostro servizio di prenotazione libri on-line puoi scegliere il libro che più ti piace tra tutto il nostro catalogo e ritirarlo direttamente in bibloiteca!", "I libri della settimana", "Scopri ora quali sono i nostri libri della settimana e scegli quello che più ti piace!")
     .container
         .row
             h1.title.m-auto Bootstrap cards here!
