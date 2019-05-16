@@ -1,14 +1,65 @@
 extends layout
-include mixin/card
-include mixin/headline
-include mixin/bwHeadline
+include mixin/textcoloumn
+include  mixin/featuretteleft
+include  mixin/featuretteright
 
 block head
-    link(rel='stylesheet', href='assets/css/headline.css')
+    link(rel='stylesheet', href='assets/css/index.css')
 
 block headline
-    +headline("Benvenuti", "Questa e una libreria bla bla", "clickme", "#", "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1082&q=80")
+    #myCarousel.carousel.slide(data-ride='carousel')
+        ol.carousel-indicators
+            li.active(data-target='#myCarousel', data-slide-to='0')
+            li(data-target='#myCarousel', data-slide-to='1')
+            li(data-target='#myCarousel', data-slide-to='2')
+        .carousel-inner
+            .carousel-item.active
+                img.first-slide(src="https://images.unsplash.com/photo-1495741545814-2d7f4d75ea09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1354&q=80", alt="Una libreria")
+                .container
+                    .carousel-caption
+                        h1 "Libreria Papyro"
+                        p
+                            | La tua libreria, al tuo servizio.
+                        p
+                            a.btn.btn-lg.btn-primary(href="/ourbooks", role='button') "I nostri libri"
+            .carousel-item
+                img.second-slide(src="https://images.unsplash.com/photo-1495741545814-2d7f4d75ea09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1354&q=80", alt="Una libreria")
+                .container
+                    .carousel-caption
+                        h1 "Libreria Papyro"
+                        p
+                            | La tua libreria, al tuo servizio.
+                        p
+                            a.btn.btn-lg.btn-primary(href="/ourbooks", role='button') "I nostri libri"
+            .carousel-item
+                img.third-slide(src="https://images.unsplash.com/photo-1495741545814-2d7f4d75ea09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1354&q=80", alt="Una libreria")
+                .container
+                    .carousel-caption
+                        h1 "Libreria Papyro"
+                        p
+                            | La tua libreria, al tuo servizio.
+                        p
+                            a.btn.btn-lg.btn-primary(href="/ourbooks", role='button') "I nostri libri"
+        a.carousel-control-prev(href='#myCarousel', role='button', data-slide='prev')
+            span.carousel-control-prev-icon(aria-hidden='true')
+            span.sr-only Previous
+        a.carousel-control-next(href='#myCarousel', role='button', data-slide='next')
+            span.carousel-control-next-icon(aria-hidden='true')
+            span.sr-only Next
 
 block content
-    +bwDoubleHeadline("Servizio di prenotazione libri", "Con il nostro servizio di prenotazione libri on-line puoi scegliere il libro che più ti piace tra tutto il nostro catalogo e ritirarlo direttamente in bibloiteca!", "I libri della settimana", "Scopri ora quali sono i nostri libri della settimana e scegli quello che più ti piace!")
-
+    .container.marketing
+        .row
+            .col-lg-4
+                +textcoloumn("Serv1", "Descrizione del servizio1", "https://images.unsplash.com/photo-1495741545814-2d7f4d75ea09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1354&q=80", "Altimage", "/ourbooks", "Cliccami")
+            .col-lg-4
+                +textcoloumn("Serv2", "Descrizione del servizio2", "https://images.unsplash.com/photo-1495741545814-2d7f4d75ea09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1354&q=80", "Altimage", "/ourbooks", "Cliccami")
+            .col-lg-4
+                +textcoloumn("Serv3", "Descrizione del servizio3", "https://images.unsplash.com/photo-1495741545814-2d7f4d75ea09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1354&q=80", "Altimage", "/ourbooks", "Cliccami")
+        hr.featurette-divider
+        +featuretteleft("First featurette heading.", "It'll blow your mind.", "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.", "https://i.imgur.com/mvOUw6y.jpg", "Imagealttext")
+        hr.featurette-divider
+        +featuretteright("Oh yeah, it's that good.", "See for yourself.", "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.", "https://i.imgur.com/mvOUw6y.jpg", "Imagealttext")
+        hr.featurette-divider
+        +featuretteleft("And lastly, this one. ", "Checkmate.", "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.", "https://i.imgur.com/mvOUw6y.jpg", "Imagealttext")
+        hr.featurette-divider

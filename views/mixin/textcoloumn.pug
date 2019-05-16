@@ -1,0 +1,6 @@
+mixin textcoloumn(title, description, image, alt, buttonhref, buttontext)
+    img.rounded-circle(src=image, alt=alt, width='140', height='140')
+    h2= title
+    p= description
+    p
+        a.btn.btn-secondary(href=buttonhref, role='button')= buttontext
