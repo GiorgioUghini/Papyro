@@ -1,6 +1,9 @@
 extends layout
-include mixin/navbar
 include mixin/card
+include mixin/headline
+
+block headline
+    +headline("Benvenuti", "Questa e una libreria bla bla", "clickme", "#")
 
 block content
     .container
