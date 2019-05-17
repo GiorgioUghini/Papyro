@@ -36,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/index'));
 app.use('/ourbooks', require('./routes/ourbooks'));
+app.use('/signin', require('./routes/signin'));
 app.use("/api/books", require("./routes/api/books"));
 app.use("/api/authors", require("./routes/api/authors"));
 app.use("/api/events", require("./routes/api/events"));
