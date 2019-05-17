@@ -3,16 +3,30 @@ include mixin/card
 include mixin/headline
 
 block head
+    link(rel='stylesheet', href='assets/css/carousel.css')
     link(rel='stylesheet', href='assets/css/index.css')
 
 block headline
-    +headline("I nostri libri", "Scopri i nostri libri attualmente disponibili. Scegli tra centinaia di titoli in esclusiva su Papyro!", "clickme", "#", "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80")
+    #myCarousel.carousel.slide(data-ride='carousel')
+        ol.carousel-indicators
+            li.active(data-target='#myCarousel', data-slide-to='0')
+        .carousel-inner
+            .carousel-item.active
+                img.first-slide(src="https://images.unsplash.com/photo-1472173148041-00294f0814a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80", alt="Some books in a library")
+                .container
+                    .carousel-caption
+                        h1.display-3 I nostri libri
+                        p
+                            | Ricerca qui tra le nostre centinaia di titoli e prenota quello che fa per te!
+                        p
+                            a.btn.btn-lg.btn-primary(href="/ourbooks", role='button') Vai al carrello
 
 block content
-    .container
-        .row
-            h1.title.m-auto Bootstrap cards here!
-        #cards-container.row
+    .album.py-5.bg-light
+        .container
+            h3.pb-3.mb-4.ce.border-bottom
+                | Una vasta gamma di libri tra cui scegliere
+            #cards-container.row
     .d-none
         +card
 

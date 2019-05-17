@@ -4,6 +4,7 @@ include  mixin/featuretteleft
 include  mixin/featuretteright
 
 block head
+    link(rel='stylesheet', href='assets/css/carousel.css')
     link(rel='stylesheet', href='assets/css/index.css')
 
 block headline
@@ -17,29 +18,29 @@ block headline
                 img.first-slide(src="https://images.unsplash.com/photo-1495741545814-2d7f4d75ea09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1354&q=80", alt="Una libreria")
                 .container
                     .carousel-caption
-                        h1 "Libreria Papyro"
+                        h1.display-3 Libreria Papyro
                         p
                             | La tua libreria, al tuo servizio.
                         p
-                            a.btn.btn-lg.btn-primary(href="/ourbooks", role='button') "I nostri libri"
+                            a.btn.btn-lg.btn-primary(href="/ourbooks", role='button') I nostri libri
             .carousel-item
-                img.second-slide(src="https://images.unsplash.com/photo-1495741545814-2d7f4d75ea09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1354&q=80", alt="Una libreria")
+                img.second-slide(src="https://images.unsplash.com/photo-1488375634201-b85b28653a79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1573&q=80", alt="A map")
                 .container
                     .carousel-caption
-                        h1 "Libreria Papyro"
+                        h1.display-4 Nuova apertura a Milano
                         p
-                            | La tua libreria, al tuo servizio.
+                            | Vieni a trovarci nel nostro nuovo negozio in Comasina.
                         p
-                            a.btn.btn-lg.btn-primary(href="/ourbooks", role='button') "I nostri libri"
+                            a.btn.btn-lg.btn-primary(href="/ourbooks", role='button') Google Maps
             .carousel-item
-                img.third-slide(src="https://images.unsplash.com/photo-1495741545814-2d7f4d75ea09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1354&q=80", alt="Una libreria")
+                img.third-slide(src="https://images.unsplash.com/photo-1532795986-dbef1643a596?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80", alt="A discount")
                 .container
                     .carousel-caption
-                        h1 "Libreria Papyro"
+                        h1.display-4 Sconto -30% su tutti i libri
                         p
-                            | La tua libreria, al tuo servizio.
+                            | Solo per questo weekend, affrettati!
                         p
-                            a.btn.btn-lg.btn-primary(href="/ourbooks", role='button') "I nostri libri"
+                            a.btn.btn-lg.btn-primary(href="/ourbooks", role='button') Prenota ora un libro
         a.carousel-control-prev(href='#myCarousel', role='button', data-slide='prev')
             span.carousel-control-prev-icon(aria-hidden='true')
             span.sr-only Previous
@@ -51,11 +52,11 @@ block content
     .container.marketing
         .row
             .col-lg-4
-                +textcoloumn("Serv1", "Descrizione del servizio1", "https://images.unsplash.com/photo-1495741545814-2d7f4d75ea09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1354&q=80", "Altimage", "/ourbooks", "Cliccami")
+                +textcoloumn("Prenotazione libri", "Grazie al nuovo sito web della libreria Papyro, puoi prenotare i tuoi libri preferiti direttamente dal web per poi ritirarli comodamente in negozio, quando vuoi tu.", "https://images.unsplash.com/photo-1530221704169-4f8289975f78?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80", "A man reading his book", "/ourbooks", "Prenota ora!")
             .col-lg-4
-                +textcoloumn("Serv2", "Descrizione del servizio2", "https://images.unsplash.com/photo-1495741545814-2d7f4d75ea09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1354&q=80", "Altimage", "/ourbooks", "Cliccami")
+                +textcoloumn("Ricerca un libro", "Grazie alla nostra nuova sezione 'i nostri libri' puoi ricercare per genere, tema o autore qualsiasi libro tu stia cercando! Potrai anche guardare l'intervista di presentazione!", "https://images.unsplash.com/photo-1512099053734-e6767b535838?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1228&q=80", "Photo trough a lens", "/ourbooks", "Cerca ora!")
             .col-lg-4
-                +textcoloumn("Serv3", "Descrizione del servizio3", "https://images.unsplash.com/photo-1495741545814-2d7f4d75ea09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1354&q=80", "Altimage", "/ourbooks", "Cliccami")
+                +textcoloumn("Terzo servizio", "Il terzo servizio è un servizio incredibile! Permette a chiunque di diventare dei veri appassionati di lettura, semplicemente con un click! Aderisci anche tu al terzo servizio!", "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80", "A person holding pencil", "/ourbooks", "Cliccami!")
         hr.featurette-divider
         +featuretteleft("First featurette heading.", "It'll blow your mind.", "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.", "https://i.imgur.com/mvOUw6y.jpg", "Imagealttext")
         hr.featurette-divider
