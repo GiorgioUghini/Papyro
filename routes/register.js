@@ -4,7 +4,7 @@ const asyncMiddleware = require("../middlewares/asyncMiddleware");
 
 /* GET signin page. */
 router.get('/', asyncMiddleware( async (req, res, next) => {
-    res.render('signin', { title: 'Login' });
+    res.render('register', { title: 'Register' });
 }));
 
 module.exports = router;

@@ -6,7 +6,7 @@ $(document).ready(function() {
             type: "POST",
             url: 'api/users/login',
             data: {
-                username: $("#inputEmail").val(),
+                email: $("#inputEmail").val(),
                 password: $("#inputPassword").val()
             },
             success: function(res)
