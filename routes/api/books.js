@@ -5,7 +5,9 @@ const Book = require("../../models").book;
 const Author = require("../../models").author;
 const Theme = require("../../models").theme;
 const Genre = require("../../models").genre;
+const Reserve = require("../../models").reserve;
 const Op = require("../../models").Sequelize.Op;
+const Sequelize = require("../../models").Sequelize;
 const {mapToArray} = require("../../utils");
 
 /**
@@ -94,6 +96,18 @@ router.post("/", asyncMiddleware( async (req, res, next) => {
     });
   }
   res.json(newBook);
+}));
+
+router.get("/bestsellers", asyncMiddleware(async (req, res, next) => {
+  const bookIds = await Reserve.findAll({
+    limit: 10,
+    attributes: ["bookId", [Sequelize.fn("count", Sequelize.col("bookId")), "count"]],
+    group: "bookId",
+    order: [
+      [Sequelize.fn("count", Sequelize.col("bookId")), "DESC"]
+    ]
+  });
+  res.json(bookIds);
 }));
 
 module.exports = router;
