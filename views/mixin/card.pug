@@ -1,14 +1,13 @@
 mixin card
     #card
-        .col-md-4
-            .card.mb-4.box-shadow(style='width: 20rem;')
-                img.card-img-top(src='%picture%', alt='Card image cap')
-                .card-body
-                    h5.card-title %title%
-                    p.card-text
-                        | %abstract%
-                    .d-flex.justify-content-between.align-items-center
-                        .btn-group
-                            button.btn.btn-sm.btn-outline-secondary(type='button') %maintheme%
-                            button.btn.btn-sm.btn-outline-secondary(type='button') %maingenre%
-                        //a.btn.btn-primary(href='#') %btnText%
+        .card.mb-4.box-shadow(style='width: 20rem;')
+            img.card-img-top(src='%picture%', alt='Card image cap')
+            .card-body
+                h5.card-title %title%
+                p.card-text
+                    | %abstract%
+                .d-flex.justify-content-between.align-items-center
+                    .btn-group
+                        button.btn.btn-sm.btn-outline-secondary(type='button') %maintheme%
+                        button.btn.btn-sm.btn-outline-secondary(type='button') %maingenre%
+                    //a.btn.btn-primary(href='#') %btnText%
