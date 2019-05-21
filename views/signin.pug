@@ -9,8 +9,7 @@ block content
             .text-center.mb-4
                 img.mb-4(src='https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg', alt='', width='72', height='72')
                 h1.h3.mb-3.font-weight-normal Sign in now!
-                p
-                    | Not already registered?
+                p= "Not already registered? "
                     a(href='/register') Register now!
             .form-label-group
                 input#inputEmail.form-control(type='email', placeholder='Email address', required='', autofocus='')
@@ -23,7 +22,6 @@ block content
                     input(type='checkbox', value='remember-me')
                     |  Remember me
             button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
-    hr
 
 append js
     script(src='assets/js/signin.js')

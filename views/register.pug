@@ -4,27 +4,24 @@ block head
     link(rel='stylesheet', href='assets/css/register.css')
 
 block content
-    .container
-        form#register-form.needs-validation.form-signin
-            .text-center.mb-4
-                img.mb-4(src='https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg', alt='', width='72', height='72')
-                h1.h3.mb-3.font-weight-normal Sign in now!
-                p
-                    | Not already registered?
-                    a(href='/register') Register now!
-            .form-label-group
-                input#inputEmail.form-control(type='email', placeholder='Email address', required='', autofocus='')
-                label(for='inputEmail') Email address
-            .form-label-group
-                input#inputPassword.form-control(type='password', placeholder='Password', required='')
-                label(for='inputPassword') Password
-            .form-label-group
-                input#confirmPassword.form-control(type='password', placeholder='Password', required='')
-                label(for='inputPassword') Confirm password
-                p#confirm-psw-label.text-danger(style="display: none") The two password doesn't match
-            button.btn.btn-lg.btn-primary.btn-block(type='submit') Register
-            //TODO: Click over confirm password don't work
-    hr
+    //.container
+    form#register-form.needs-validation.form-signin
+        .text-center.mb-4
+            img.mb-4(src='https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg', alt='', width='72', height='72')
+            h1.h3.mb-3.font-weight-normal Register now!
+            p= "Tons of useful feature such as "
+                a(href='/ourbooks') Book reservation!
+        .form-label-group
+            input#inputEmail.form-control(type='email', placeholder='Email address', required='', autofocus='')
+            label(for='inputEmail') Email address
+        .form-label-group
+            input#inputPassword.form-control(type='password', placeholder='Password', required='')
+            label(for='inputPassword') Password
+        .form-label-group
+            input#confirmPassword.form-control(type='password', placeholder='Password', required='')
+            label(for='confirmPassword') Confirm password
+            p#confirm-psw-label.text-danger(style="display: none") The two password doesn't match
+        button.btn.btn-lg.btn-primary.btn-block(type='submit') Register
 
 append js
     script(src='assets/js/register.js')
