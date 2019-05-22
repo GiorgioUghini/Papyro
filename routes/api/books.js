@@ -110,6 +110,38 @@ router.get("/bestsellers", asyncMiddleware(async (req, res, next) => {
   res.json(bookIds);
 }));
 
+router.get("/:bookId", asyncMiddleware(async (req, res, next) => {
+  const {bookId} = req.params;
+  const book = await Book.findOne({
+    where: {
+      id: bookId
+    },
+    include: [{
+      model: Author,
+      attributes: ["id"],
+      through: {
+        attributes: []
+      }
+    },{
+      model: Theme,
+      attributes: ["name"],
+      through: {
+        attributes: []
+      }
+    },{
+      model: Genre,
+      attributes: ["name"],
+      through: {
+        attributes: []
+      }
+    }]
+  });
+  book.authors = mapToArray(book.authors, "id");
+  if(book.themes) book.themes = mapToArray(book.themes, "name");
+  if(book.genres) book.genres = mapToArray(book.genres, "name");
+  res.json(book);
+}));
+
 module.exports = router;
 
 function createWhere(str){
