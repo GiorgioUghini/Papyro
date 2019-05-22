@@ -12,6 +12,9 @@ $(document).ready(function() {
             success: function(res)
             {
                 if (res.jwt != null) {
+                    Cookies.set("token", res.jwt, {
+                      expires: new Date("2099-12-12")
+                    });
                     window.location.replace('/');
                 }
             },
