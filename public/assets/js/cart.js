@@ -38,9 +38,23 @@ $(document).ready(async function () {
       if($(".removeButton").length === 1) showEmptyCart();
     }
   });
+
+  $("#reserveButton").click(async function () {
+    const result = await fetch("/api/reservations/confirmReservation", {
+      method: "post",
+      headers: new Headers({
+        authorization: token
+      })
+    });
+    if(result.ok){
+      showEmptyCart();
+      $("#emptyCart").text("Reservation Successful!");
+    }
+  })
 });
 
 function showEmptyCart(){
+  $("#cartTable").empty();
   $("#reserveButton").remove();
   $("#emptyCart").show();
 }
