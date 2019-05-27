@@ -4,8 +4,7 @@ $(document).ready(async function () {
   const bookId = parseInt(/\d+$/g.exec(window.location.pathname)[0]);
   let book = await fetch("/api/books/"+bookId);
   book = await book.json();
-  $("#backgroundImage").attr("src", book.picture);
-  $("#backgroundImage").attr("alt", book.title);
+  $("#backgroundImage").attr("src", book.picture).attr("alt", book.title);
   $("#bookTitle").text(book.title);
   $("#abstract").text(book.abstract);
   $("#interview").text(book.interview);
