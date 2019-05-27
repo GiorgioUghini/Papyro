@@ -146,7 +146,7 @@ module.exports = router;
 
 function createWhere(str){
   const where = {};
-  if(!str) return where;
+  if(!str || str==="0") return where;
   const arr = str.split(",");
   where.id = {
     [Op.in]: arr
