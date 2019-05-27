@@ -1,6 +1,7 @@
 extends layout
 include mixin/card
 include mixin/headline
+include mixin/filters
 
 block head
     link(rel='stylesheet', href='assets/css/carousel.css')
@@ -25,6 +26,7 @@ block headline
 block content
     .album
         .container
+            +filters
             h3.pb-3.mb-4.ce.border-bottom
                 | Take your time, it's a complex decision. We know it.
             #cards-container.d-flex.flex-wrap.justify-content-center
