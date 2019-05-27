@@ -25,6 +25,7 @@ $.ajax({
 });
 
 $(document).ready(async function(){
+  $("#noBooks").hide();
   await Promise.all([
     getAuthors(),
     getThemes(),
@@ -40,6 +41,9 @@ $(document).ready(async function(){
     });
     let books = await fetch("/api/books?"+queryString);
     books = await books.json();
+    if(!books.length){
+      $("#noBooks").show();
+    }
     const bookIds = books.map(b => b.id);
     $(".card").each(function () {
       $(this).show();

@@ -65,9 +65,8 @@ router.get("/", asyncMiddleware( async (req, res, next) => {
     }]
   });
   books = JSON.parse(JSON.stringify(books));
-  let bestSellers;
-  if(bestSeller){
-    bestSellers = await Reserve.findAll({
+  if(bestSeller==="true"){
+    let bestSellers = await Reserve.findAll({
       limit: 10,
       attributes: ["bookId", [Sequelize.fn("count", Sequelize.col("bookId")), "count"]],
       group: "bookId",
