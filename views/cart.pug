@@ -1,0 +1,21 @@
+extends layout
+
+mixin row
+    #cartRow.d-none
+        .row.justify-content-center.cartRow(data-book-id="%bookId%")
+            .col-11.col-md-6.border-bottom.mb-3
+                p %title%
+            .col-1.border-bottom.mb-3
+                button.btn.btn-danger.removeButton(data-book-id="%bookId%") Remove
+
+block content
+    .container
+        h1.title Cart
+        #cartTable
+        .row.justify-content-center
+            button#reserveButton.btn.btn-primary.w-100.col-md-4.col-lg-2 Reserve
+            p#emptyCart Nothing in your cart
+    +row
+
+append js
+    script(src="/assets/js/cart.js")
