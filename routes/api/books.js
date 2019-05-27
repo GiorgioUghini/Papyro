@@ -31,7 +31,7 @@ const {mapToArray} = require("../../utils");
  * @returns {Error}  default - Unexpected error
  */
 router.get("/", asyncMiddleware( async (req, res, next) => {
-  let {themes, genres, authors, isFavorite} = req.query;
+  let {themes, genres, authors, isFavorite, bestSeller} = req.query;
   const where = {};
   if(isFavorite==="true"){
     where.isFavorite = true;
@@ -65,6 +65,19 @@ router.get("/", asyncMiddleware( async (req, res, next) => {
     }]
   });
   books = JSON.parse(JSON.stringify(books));
+  let bestSellers;
+  if(bestSeller){
+    bestSellers = await Reserve.findAll({
+      limit: 10,
+      attributes: ["bookId", [Sequelize.fn("count", Sequelize.col("bookId")), "count"]],
+      group: "bookId",
+      order: [
+        [Sequelize.fn("count", Sequelize.col("bookId")), "DESC"]
+      ]
+    });
+    bestSellers = bestSellers.map(x => x.bookId);
+    books = books.filter(b => bestSellers.includes(b.id));
+  }
   for (let book of books){
     book.authors = mapToArray(book.authors, "id");
     if(book.themes) book.themes = mapToArray(book.themes, "name");
