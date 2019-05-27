@@ -1,0 +1,24 @@
+mixin filters
+    .row.filters.my-3
+        .col-sm-6.col-md-4
+            .form-group
+                select#authorsSelect.form-control
+                    option(value="0") Author
+        .col-sm-6.col-md-4
+            .form-group
+                select#themesSelect.form-control
+                    option(value="0") Theme
+        .col-sm-6.col-md-4
+            .form-group
+                select#genresSelect.form-control
+                    option(value="0") Genre
+        .col-sm-6.col-md-4
+            .form-check
+                input#isFavoriteCheck.form-check-input(type="checkbox")
+                label.form-check-label(for="isFavoriteCheck") Our favorites
+        .col-sm-6.col-md-4
+            .form-check
+                input#bestSellersCheck.form-check-input(type="checkbox")
+                label.form-check-label(for="bestSellersCheck") Best sellers
+        .col-sm-6.col-md-4
+            button#submitFiltersBtn.btn.btn-primary.w-100 Filter
