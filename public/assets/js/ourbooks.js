@@ -9,9 +9,15 @@ $.ajax({
                 .replace("%abstract%", card.abstract.truncate())
                 .replace("%maintheme%", card.themes[0])
                 .replace("%maingenre%", card.genres[0])
-                .replace("%picture%", card.picture);
+                .replace("%picture%", card.picture)
+                .replace("%bookId%", card.id);
             $cardsContainer.append(c);
         });
+      $(".card .findOutMore").click(function (e) {
+        e.preventDefault();
+        const id = $(this).data("bookId");
+        window.location.href = "/ourbooks/"+id;
+      });
     },
     error: function(richiesta,stato,errori){
         alert("Error");

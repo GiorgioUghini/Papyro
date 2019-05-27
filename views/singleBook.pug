@@ -1,0 +1,27 @@
+extends layout
+
+block headline
+    #myCarousel.carousel.slide(data-ride='carousel')
+        ol.carousel-indicators
+            li.active(data-target='#myCarousel', data-slide-to='0')
+        .carousel-inner
+            .carousel-item.active
+
+                .container
+                    .carousel-caption
+
+block content
+    .container.mt-5
+        .row
+            .col-md-6.col-lg-4
+                img#backgroundImage.first-slide(src="", alt="")
+            .col-md-6.col-lg-8
+                h1#bookTitle.title
+                p#abstract
+                h2.title Interview
+                p#interview
+                a#addToCartBtn.btn.btn-primary.login-show(href="#") Add to Cart
+
+append js
+    script(src="/assets/js/singleBook.js")
+
