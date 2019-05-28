@@ -9,27 +9,8 @@ const Reserve = require("../../models").reserve;
 const Op = require("../../models").Sequelize.Op;
 const Sequelize = require("../../models").Sequelize;
 const {mapToArray} = require("../../utils");
+const createError = require("http-errors");
 
-/**
- * @typedef Book
- * @property {integer} id
- * @property {string} title.required
- * @property {string} picture - URL to the book's picture
- * @property {string} abstract - short description of the book
- * @property {string} interview - interview with the author
- * @property {object} facts - an object with different facts about the book
- * @property {boolean} isFavorite - indicates whether this book is one of our favourite
- */
-
-/**
- * Get all books
- * @route GET /api/books
- * @group books - Operations about books
- * @param {string} title.query
- * @param {string} password.query.required - user's password.
- * @returns {object} 200 - An array of user info
- * @returns {Error}  default - Unexpected error
- */
 router.get("/", asyncMiddleware( async (req, res, next) => {
   let {themes, genres, authors, isFavorite, bestSeller} = req.query;
   const where = {};
@@ -64,7 +45,6 @@ router.get("/", asyncMiddleware( async (req, res, next) => {
       }
     }]
   });
-  books = JSON.parse(JSON.stringify(books));
   if(bestSeller==="true"){
     let bestSellers = await Reserve.findAll({
       limit: 10,
@@ -110,6 +90,25 @@ router.post("/", asyncMiddleware( async (req, res, next) => {
   res.json(newBook);
 }));
 
+router.post("/similar", asyncMiddleware(async (req, res, next) => {
+  const {id1, id2} = req.body;
+  if(parseInt(id1)===parseInt(id2)) throw createError(400, "Ids cannot be identical");
+  const book1 = await Book.findOne({
+    where: {
+      id: id1
+    }
+  });
+  const book2 = await Book.findOne({
+    where: {
+      id: id2
+    }
+  });
+  if(!(book1 && book2)) throw createError(404, "Book not found");
+  await book1.addSimilar(book2);
+  await book2.addSimilar(book2);
+  res.json({msg: "ok"});
+}));
+
 router.get("/bestsellers", asyncMiddleware(async (req, res, next) => {
   const bookIds = await Reserve.findAll({
     limit: 10,
@@ -148,6 +147,7 @@ router.get("/:bookId", asyncMiddleware(async (req, res, next) => {
       }
     }]
   });
+  book.similarBooks = await book.getSimilar();
   book.authors = mapToArray(book.authors, "id");
   if(book.themes) book.themes = mapToArray(book.themes, "name");
   if(book.genres) book.genres = mapToArray(book.genres, "name");
