@@ -1,4 +1,8 @@
 extends layout
+include mixin/card
+
+block head
+    link(rel='stylesheet', href='/assets/css/ourbooks.css')
 
 block headline
     #myCarousel.carousel.slide(data-ride='carousel')
@@ -21,7 +25,11 @@ block content
                 h2.title Interview
                 p#interview
                 a#addToCartBtn.btn.btn-primary.login-show(href="#") Add to Cart
+    .album
+        .container
+            #cards-container.d-flex.flex-wrap.justify-content-center
+    +card.d-none
 
 append js
-    script(src="/assets/js/singleBook.js")
+    script(type="module" src="/assets/js/singleBook.js")
 

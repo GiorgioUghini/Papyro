@@ -1,7 +1,9 @@
+import getCards from "./getCards.js";
 let alreadyInCart = null;
 
 $(document).ready(async function () {
   const bookId = parseInt(/\d+$/g.exec(window.location.pathname)[0]);
+  await getCards(bookId);
   let book = await fetch("/api/books/"+bookId);
   book = await book.json();
   $("#backgroundImage").attr("src", book.picture).attr("alt", book.title);

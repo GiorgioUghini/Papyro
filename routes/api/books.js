@@ -45,6 +45,7 @@ router.get("/", asyncMiddleware( async (req, res, next) => {
       }
     }]
   });
+  books = JSON.parse(JSON.stringify(books));
   if(bestSeller==="true"){
     let bestSellers = await Reserve.findAll({
       limit: 10,
@@ -105,7 +106,7 @@ router.post("/similar", asyncMiddleware(async (req, res, next) => {
   });
   if(!(book1 && book2)) throw createError(404, "Book not found");
   await book1.addSimilar(book2);
-  await book2.addSimilar(book2);
+  await book2.addSimilar(book1);
   res.json({msg: "ok"});
 }));
 
@@ -123,7 +124,7 @@ router.get("/bestsellers", asyncMiddleware(async (req, res, next) => {
 
 router.get("/:bookId", asyncMiddleware(async (req, res, next) => {
   const {bookId} = req.params;
-  const book = await Book.findOne({
+  let book = await Book.findOne({
     where: {
       id: bookId
     },
@@ -147,7 +148,9 @@ router.get("/:bookId", asyncMiddleware(async (req, res, next) => {
       }
     }]
   });
-  book.similarBooks = await book.getSimilar();
+  const similarBooks = await book.getSimilar();
+  book = book.toJSON();
+  book.similarBooks = similarBooks;
   book.authors = mapToArray(book.authors, "id");
   if(book.themes) book.themes = mapToArray(book.themes, "name");
   if(book.genres) book.genres = mapToArray(book.genres, "name");

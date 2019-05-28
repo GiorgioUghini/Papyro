@@ -14,5 +14,5 @@ $(document).ready(function () {
     e.preventDefault();
     Cookies.remove("token");
     window.location.href = "/";
-  })
+  });
 });

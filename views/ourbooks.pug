@@ -4,9 +4,9 @@ include mixin/headline
 include mixin/filters
 
 block head
-    link(rel='stylesheet', href='assets/css/carousel.css')
-    link(rel='stylesheet', href='assets/css/index.css')
-    link(rel='stylesheet', href='assets/css/ourbooks.css')
+    link(rel='stylesheet', href='/assets/css/carousel.css')
+    link(rel='stylesheet', href='/assets/css/index.css')
+    link(rel='stylesheet', href='/assets/css/ourbooks.css')
 
 block headline
     #myCarousel.carousel.slide(data-ride='carousel')
@@ -35,5 +35,5 @@ block content
         +card
 
 append js
-    script(src='assets/js/ourbooks.js')
+    script(type="module" src='assets/js/ourbooks.js')
 
