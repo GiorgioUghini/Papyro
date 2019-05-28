@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: Papyro API
+  description: Hypermedia project for a library (2019)
+  version: 1.0.0
+servers:
+  - url: http://papyro.tk/api
+    description: Base URL of the API server
+paths:
+  /authors:
+    get:
+      summary: Returns a list of authors.
+      responses:
+        '200':    # status code
+          description: A JSON array of authors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+components:
+  schemas:
+    Author:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        picture:
+          type: string
+        bio:
+          type: string

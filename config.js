@@ -14,12 +14,12 @@ const common = {
 
 const development = {
   showErrors: true,
-  host: "localhost:3100"
+  host: "http://localhost:" + (process.env.PORT || 3000)
 };
 
 const production = {
   showErrors: false,
-  host: "papyro.com"
+  host: "http://papyro.com"
 };
 
 const env = process.env.NODE_ENV;

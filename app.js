@@ -5,16 +5,20 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 const lessMiddleware = require("less-middleware");
 const cssbeautify = require("cssbeautify");
-const swaggerOptions = require("./swagger");
+const swaggerUi = require("swagger-ui-express");
+const YAML = require('yamljs');
 const config = require("./config");
+
+const swaggerDocument = YAML.load("./swagger.yaml");
+if(process.env.NODE_ENV !== "production") {
+  swaggerDocument.servers[0].url = config.host + "/api";
+}
 
 require("./models").initialize()
   .then(() => console.log("Database ready"))
   .catch((e) => console.error(e));
 
 let app = express();
-const expressSwagger = require("express-swagger-generator")(app);
-expressSwagger(swaggerOptions);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,6 +37,8 @@ app.use(lessMiddleware(path.join(__dirname, 'less'), {
     css: (css) => cssbeautify(css)
   }}));
 app.use(express.static(path.join(__dirname, 'public')));
+app.get("/backend/spec.yaml", (req, res) => res.send(YAML.stringify(swaggerDocument, 500)));
+app.use('/backend/swaggerui', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/', require('./routes/index'));
 app.use('/ourbooks', require('./routes/ourbooks'));
