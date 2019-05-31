@@ -30,4 +30,35 @@ $(document).ready(async function () {
   $cards.each(function(){
     $(this).height(maxHeight);
   });
+
+  let eventsThisMonth = null;
+  $("#checkThisMonth").click(async function () {
+    const checked = $(this).prop("checked");
+    if(checked && !eventsThisMonth){
+      const today = new Date();
+      const firstOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+      const lastOfMonth = new Date(today.getFullYear(), today.getMonth()+1, 1);
+      eventsThisMonth = await fetch(`/api/events?startDate=${firstOfMonth.toLocaleDateString()}&endDate=${lastOfMonth.toLocaleDateString()}`);
+      eventsThisMonth = await eventsThisMonth.json();
+    }
+    const $cardContainers = $(".card-container");
+    if(checked){
+      $cardContainers.each(function(){
+        const eventId = parseInt($(this).children(".card").data("event-id"));
+        let hide = true;
+        for(let e of eventsThisMonth){
+          if(e.id === eventId){
+            hide = false;
+          }
+        }
+        if(hide){
+          $(this).hide();
+        }
+      });
+    }else{
+      $cardContainers.each(function () {
+        $(this).show();
+      })
+    }
+  });
 });

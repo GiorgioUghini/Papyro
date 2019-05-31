@@ -8,12 +8,18 @@ const Op = require("../../models").Sequelize.Op;
 
 router.get("/", asyncMiddleware( async (req, res, next) => {
   const where = {};
-  const {startDate, endDate} = req.query;
+  let {startDate, endDate} = req.query;
   if(startDate){
+    startDate = new Date(startDate);
+    console.log(startDate.toDateString());
     where.date = {
-      [Op.gt]: startDate,
-      [Op.lt]: endDate
+      [Op.gte]: startDate
     }
+  }
+  if(endDate){
+    endDate = new Date(endDate);
+    console.log(endDate.toDateString());
+    where.date[Op.lt] = endDate;
   }
   let events = await Event.findAll({
     where

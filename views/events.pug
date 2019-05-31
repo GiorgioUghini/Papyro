@@ -6,13 +6,13 @@ block head
 block content
     .container
         h1.title Events
-        .form-check
+        .form-check.mb-3
             input#checkThisMonth.form-check-input(type="checkbox")
             label.form-check-label(for="checkThisMonth") Only show events for this month
         .row#events
     #event.d-none
-        .col-sm-6.col-md-4.col-lg-3
-            .card.w-100(data-eventId="%event-id%")
+        .col-sm-6.col-md-4.col-lg-3.card-container
+            .card.w-100(data-event-id="%eventId%")
                 img.card-img-top(src="%image%" alt="")
                 .card-body
                     h5.card-title %bookName%
