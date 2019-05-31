@@ -15,4 +15,8 @@ router.get("/authors", asyncMiddleware(async (req, res, next) => {
   res.render("authors", { title: "Authors" })
 }));
 
+router.get("/authors/:id", asyncMiddleware(async (req, res, next) => {
+  res.render("author", {title: "Authors"});
+}));
+
 module.exports = router;

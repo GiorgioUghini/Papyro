@@ -2,6 +2,7 @@ let express = require('express');
 let router = express.Router();
 const asyncMiddleware = require("../../middlewares/asyncMiddleware");
 const Author = require("../../models").author;
+const Book = require("../../models").book;
 const createError = require("http-errors");
 
 router.get("/", asyncMiddleware( async (req, res) => {
@@ -13,7 +14,8 @@ router.get("/:id", asyncMiddleware(async (req, res) => {
   const author = await Author.findOne({
     where: {
       id: req.params.id
-    }
+    },
+    include: [Book]
   });
   if(!author) throw createError(404);
   res.json(author);
