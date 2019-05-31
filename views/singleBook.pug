@@ -22,6 +22,8 @@ block content
             .col-md-6.col-lg-8
                 h1#bookTitle.title
                 p#abstract
+                h2.title Authors
+                .row#authors
                 h2.title Interview
                 p#interview
                 a#addToCartBtn.btn.btn-primary.login-show(href="#") Add to Cart
@@ -32,6 +34,9 @@ block content
         .album
             #cards-container.d-flex.flex-wrap.justify-content-center
     +card.d-none
+    #author.d-none
+        .col-sm-6.col-md-3
+            a.btn.btn-info.w-100(href="/authors/%authorId%") %authorName%
 
 append js
     script(type="module" src="/assets/js/singleBook.js")

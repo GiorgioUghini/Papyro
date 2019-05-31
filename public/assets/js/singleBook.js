@@ -6,6 +6,12 @@ $(document).ready(async function () {
   await getCards(bookId);
   let book = await fetch("/api/books/"+bookId);
   book = await book.json();
+  const $author = $("#author").html();
+  for(let authorId of book.authors){
+    let author = await fetch("/api/authors/"+authorId);
+    author = await author.json();
+    $("#authors").append($author.replace(/%authorId%/g, authorId).replace(/%authorName%/g, author.name));
+  }
   $("#backgroundImage").attr("src", book.picture).attr("alt", book.title);
   $("#bookTitle").text(book.title);
   $("#abstract").text(book.abstract);
