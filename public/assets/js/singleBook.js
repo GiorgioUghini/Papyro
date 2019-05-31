@@ -14,12 +14,18 @@ $(document).ready(async function () {
   $("#bookTitle").text(book.title);
   $("#abstract").text(book.abstract);
   $("#interview").text(book.interview);
-  if(book.event){
-    const dateObj = new Date(book.event.date);
-    $("#eventDate").append(" " + dateObj.toDateString());
-    $("#eventLocation").append(" " + book.event.location);
+
+  const $events = $("#events");
+  if(book.events){
+    const $event = $("#event").html();
+    for(let event of book.events){
+      let compiledEvent = $event
+        .replace("%eventDate%", new Date(event.date).toDateString())
+        .replace("%eventLocation%", event.location);
+      $events.append(compiledEvent);
+    }
   }else{
-    $("#event").hide();
+    $events.hide();
   }
 
   const token = Cookies.get("token");

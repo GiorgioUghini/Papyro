@@ -25,15 +25,11 @@ block content
                 p#abstract
                 h2.title Authors
                 .row#authors
+        h2.title.mt-3 Events
+        .row#events
+        h2.title.mt-3 Interview
         .row
-            .col-12#event.mt-3
-                h2.title Event
-                p#eventDate
-                    b Date:
-                p#eventLocation
-                    b Location:
             .col-12
-                h2.title Interview
                 p#interview
     .container
         hr.my-5
@@ -44,6 +40,14 @@ block content
     #author.d-none
         .col-sm-6.col-md-3
             a.btn.btn-info.w-100(href="/authors/%authorId%") %authorName%
+    #event.d-none
+        .col-sm-6.col-md-4.col-lg-3.text-center.border.p-4
+            p
+                b= "Date: "
+                | %eventDate%
+            p.mb-0
+                b= "Location: "
+                | %eventLocation%
 
 append js
     script(type="module" src="/assets/js/singleBook.js")

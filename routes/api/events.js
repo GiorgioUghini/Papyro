@@ -30,10 +30,8 @@ router.get("/", asyncMiddleware( async (req, res, next) => {
 router.post("/", asyncMiddleware( async (req, res, next) => {
   const book = await Book.findOne({where: {id: req.body.bookId}});
   if(!book) throw createError(404, "Book not found");
-  const oldEvent = await book.getEvent();
-  if(oldEvent) throw createError(409);
   const newEvent = await Event.create(req.body);
-  await book.setEvent(newEvent);
+  await book.addEvent(newEvent);
   res.json({msg: "ok"});
 }));
 
