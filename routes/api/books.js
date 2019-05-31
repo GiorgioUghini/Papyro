@@ -24,7 +24,7 @@ router.get("/", asyncMiddleware( async (req, res, next) => {
     where,
     include: [{
       model: Author,
-      attributes: ["id"],
+      attributes: ["id", "name"],
       where: authors,
       through: {
         attributes: []
@@ -59,7 +59,6 @@ router.get("/", asyncMiddleware( async (req, res, next) => {
     books = books.filter(b => bestSellers.includes(b.id));
   }
   for (let book of books){
-    book.authors = mapToArray(book.authors, "id");
     if(book.themes) book.themes = mapToArray(book.themes, "name");
     if(book.genres) book.genres = mapToArray(book.genres, "name");
   }
@@ -130,7 +129,7 @@ router.get("/:bookId", asyncMiddleware(async (req, res, next) => {
     },
     include: [{
       model: Author,
-      attributes: ["id"],
+      attributes: ["id", "name"],
       through: {
         attributes: []
       }
@@ -151,7 +150,6 @@ router.get("/:bookId", asyncMiddleware(async (req, res, next) => {
   const similarBooks = await book.getSimilar();
   book = book.toJSON();
   book.similarBooks = similarBooks;
-  book.authors = mapToArray(book.authors, "id");
   if(book.themes) book.themes = mapToArray(book.themes, "name");
   if(book.genres) book.genres = mapToArray(book.genres, "name");
   res.json(book);
