@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    .container
+        h1.title.my-3 Authors
+        #authors
+    #author-left.d-none
+        .row
+            .col-md-6.col-lg-3
+                img.w-100.mb-3(src="%picture%", alt="")
+                a.btn.btn-primary.w-100.my-2(href="/authors/%id%") More info
+            .col-md-6.col-lg-9
+                h2.title %name%
+                p %bio%
+        hr.w-100
+    #author-right.d-none
+        .row
+            .col-md-6.col-lg-9.text-right
+                h2.title %name%
+                p %bio%
+            .col-md-6.col-lg-3
+                img.w-100.mb-3(src="%picture%", alt="")
+                a.btn.btn-primary.w-100.my-2(href="/authors/%id%") More info
+            hr.w-100.my-3
+
+
+append js
+    script(src="/assets/js/authors.js")

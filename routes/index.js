@@ -11,4 +11,8 @@ router.get("/cart", asyncMiddleware(async (req, res, next) => {
   res.render("cart", {title: "Papyro"});
 }));
 
+router.get("/authors", asyncMiddleware(async (req, res, next) => {
+  res.render("authors", { title: "Authors" })
+}));
+
 module.exports = router;
