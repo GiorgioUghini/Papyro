@@ -14,6 +14,14 @@ $(document).ready(async function () {
   $("#bookTitle").text(book.title);
   $("#abstract").text(book.abstract);
   $("#interview").text(book.interview);
+  if(book.event){
+    const dateObj = new Date(book.event.date);
+    $("#eventDate").append(" " + dateObj.toDateString());
+    $("#eventLocation").append(" " + book.event.location);
+  }else{
+    $("#event").hide();
+  }
+
   const token = Cookies.get("token");
   if(token){
     let cart = await fetch("/api/reservations/cart", {
