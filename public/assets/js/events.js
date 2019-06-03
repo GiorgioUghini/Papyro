@@ -11,7 +11,7 @@ $(document).ready(async function () {
   for(let event of events){
     let compiledEvent = $event;
     compiledEvent = compiledEvent
-      .replace("%eventId%", event.id)
+      .replace(/%eventId%/g, event.id)
       .replace("%image%", event.book.picture)
       .replace("%bookName%", event.book.title)
       .replace("%date%", new Date(event.date).toDateString())
