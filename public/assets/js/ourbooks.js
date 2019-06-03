@@ -9,6 +9,7 @@ $(document).ready(async function(){
     getGenres()
   ]);
   $("#submitFiltersBtn").click(async function () {
+    const $cards = $(".card");
     const queryString = $.param({
       authors: $("#authorsSelect").val(),
       themes: $("#themesSelect").val(),
@@ -17,12 +18,16 @@ $(document).ready(async function(){
       bestSeller: $("#bestSellersCheck").prop("checked")
     });
     let books = await fetch("/api/books?"+queryString);
-    books = await books.json();
-    if(!books.length){
+    if(!books.ok){
       $("#noBooks").show();
+      $cards.each(function(){
+        $(this).hide();
+      });
+      return;
     }
+    books = await books.json();
     const bookIds = books.map(b => b.id);
-    $(".card").each(function () {
+    $cards.each(function () {
       $(this).show();
       const bookId = $(this).data("book-id");
       if(!bookIds.includes(bookId)){
