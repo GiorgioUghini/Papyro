@@ -37,7 +37,7 @@ $(document).ready(async function () {
     let cart = await fetch("/api/reservations/cart", {
       method: "get",
       headers: new Headers({
-        authorization: token
+        authorization: "Bearer " + token
       })
     });
     cart = await cart.json();

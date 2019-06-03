@@ -19,6 +19,7 @@ router.post("/register", asyncMiddleware(async (req, res, next) => {
 
 router.post("/login", asyncMiddleware(async(req, res, next) => {
   const {email, password} = req.body;
+  if(!(email && password)) throw createError(400);
   const user = await User.findOne({where: {email}});
   if(!user) throw createError(404, "User not found");
   if(!bcrypt.compareSync(password, user.password)) throw createError(401, "Wrong password");

@@ -5,7 +5,7 @@ $(document).ready(async function () {
   let cart = await fetch("/api/reservations/cart", {
     method: "get",
     headers: new Headers({
-      authorization: token
+      authorization: "Bearer " + token
     })
   });
   cart = await cart.json();
@@ -27,7 +27,7 @@ $(document).ready(async function () {
       method: "post",
       headers: new Headers({
         "Content-Type": "application/json",
-        authorization: token
+        authorization: "Bearer " + token
       }),
       body: JSON.stringify({
         bookId
@@ -43,7 +43,7 @@ $(document).ready(async function () {
     const result = await fetch("/api/reservations/confirmReservation", {
       method: "post",
       headers: new Headers({
-        authorization: token
+        authorization: "Bearer " + token
       })
     });
     if(result.ok){

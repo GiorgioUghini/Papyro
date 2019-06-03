@@ -133,8 +133,83 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/Theme'
+  /reservations/cart:
+    get:
+      summary: Returns all the books in the cart
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: An array of book IDs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+                  format: int32
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
+  /users/login:
+    post:
+      summary: Logs in the user
+      requestBody:
+        description: email and password
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: cosimo.russo123@gmail.com
+                password:
+                  type: string
+                  format: password
+                  example: xxx123##
+      responses:
+        '200':
+          description: The user token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '400':
+          description: Missing email or password
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
+        '401':
+          description: Wrong password
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
+
+
 
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     Authors:
       type: object
