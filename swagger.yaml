@@ -282,7 +282,7 @@ paths:
                 email:
                   type: string
                   format: email
-                  example: cosimo.russo123@gmail.com
+                  example: admin@admin.com
                 password:
                   type: string
                   format: password
@@ -315,8 +315,47 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/Error'
-
-
+  /users/register:
+    post:
+      summary: Register the user
+      requestBody:
+        description: email and password
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: admin@admin.com
+                password:
+                  type: string
+                  format: password
+                  example: xxx123##
+      responses:
+        '200':
+          description: An 'ok' message from the server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Invalid (or empty) email or password
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
+        '409':
+          description: User already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
 
 components:
   securitySchemes:

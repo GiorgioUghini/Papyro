@@ -7,9 +7,12 @@ const jwt = require("jsonwebtoken");
 const {jwtSecret} = require("../../config");
 const bcrypt = require("bcrypt");
 const authMiddleware = require("../../middlewares/requiresAuth");
+const validator = require("email-validator");
 
 router.post("/register", asyncMiddleware(async (req, res, next) => {
   const {email, password} = req.body;
+  if(!(email && password)) throw createError(400, "Missing email or password");
+  if(!validator.validate(email)) throw createError(400, "Invalid email");
   const user = await User.findOrCreate({
     where: {email},
     defaults: {password}});
