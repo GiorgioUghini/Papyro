@@ -7,7 +7,7 @@ const out = async (id) => {
       let $card = $("#card");
       let $cardsContainer = $("#cards-container");
       if(id){
-        result = result.similarBooks;
+        result = result["Similar"];
         let i = 0;
         for(let b of result){
           let tmp = await fetch("/api/books/"+b.id);

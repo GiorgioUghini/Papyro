@@ -149,11 +149,15 @@ router.get("/:bookId", asyncMiddleware(async (req, res, next) => {
       }
     },{
       model: Event
+    },{
+      model: Book,
+      as: "Similar",
+      through:{
+        attributes: []
+      }
     }]
   });
-  const similarBooks = await book.getSimilar();
   book = book.toJSON();
-  book.similarBooks = similarBooks;
   if(book.themes) book.themes = mapToArray(book.themes, "name");
   if(book.genres) book.genres = mapToArray(book.genres, "name");
   res.json(book);

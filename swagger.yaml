@@ -88,6 +88,31 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/Error'
+  /books/{id}:
+    get:
+      summary: Return book's details
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            format: int32
+            example: 1
+          required: true
+          description: id of the book to get
+      responses:
+        '200':
+          description: The book object
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Book'
+        '404':
+          description: No book with the given id
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
 components:
   schemas:
     Authors:
@@ -157,6 +182,9 @@ components:
             events:
               type: array
               $ref: '#components/schemas/Event'
+            similarBooks:
+              type: array
+              $ref: '#components/schemas/BaseBook'
 
     Genre:
       type: object
