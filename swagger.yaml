@@ -113,6 +113,27 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/Error'
+  /genres:
+    get:
+      summary: Returns all genres
+      responses:
+        '200':
+          description: An array containing all genres
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Genre'
+  /themes:
+    get:
+      summary: Returns all themes
+      responses:
+        '200':
+          description: An array containing all themes
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Theme'
+
 components:
   schemas:
     Authors:
