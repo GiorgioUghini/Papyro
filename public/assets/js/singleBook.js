@@ -14,6 +14,10 @@ $(document).ready(async function () {
   $("#bookTitle").text(book.title);
   $("#abstract").text(book.abstract);
   $("#interview").text(book.interview);
+  const genres = book.genres.join(", ");
+  $("#genres").html("<b>Genres</b>: " + genres);
+  const themes = book.themes.join(", ");
+  $("#themes").html("<b>Themes</b>: " + themes);
 
   const $events = $("#events");
   if(book.events){
