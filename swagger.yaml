@@ -43,6 +43,51 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/Error'
+  /books:
+    get:
+      summary: A list of books
+      parameters:
+        - in: query
+          name: themes
+          schema:
+            type: string
+            example: '1,2'
+          description: a comma-separated list of theme ids to filter by. Returns all the books with at least 1 matching theme
+        - in: query
+          name: genres
+          schema:
+            type: string
+            example: '1,2'
+          description: a comma-separated list of genre ids to filter by. Returns all the books with at least 1 matching genre
+        - in: query
+          name: authors
+          schema:
+            type: string
+            example: '1,2'
+          description: a comma-separated list of author ids to filter by. Returns all the books with at least 1 matching author
+        - in: query
+          name: isFavorite
+          schema:
+            type: boolean
+          description: Show our favorite books only
+        - in: query
+          name: bestSeller
+          schema:
+            type: boolean
+          description: Show best sellers only
+      responses:
+        '200':
+          description: A list of books with eventual filters applyed
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Books'
+        '404':
+          description: No book matched the filter
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
 components:
   schemas:
     Authors:

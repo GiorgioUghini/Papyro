@@ -59,6 +59,7 @@ router.get("/", asyncMiddleware( async (req, res, next) => {
     bestSellers = bestSellers.map(x => x.bookId);
     books = books.filter(b => bestSellers.includes(b.id));
   }
+  if(!books.length) throw createError(404);
   for (let book of books){
     if(book.themes) book.themes = mapToArray(book.themes, "name");
     if(book.genres) book.genres = mapToArray(book.genres, "name");
