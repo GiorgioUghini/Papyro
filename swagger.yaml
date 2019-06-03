@@ -37,6 +37,12 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/Author'
+        '404':
+          description: No authors with that id
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
 components:
   schemas:
     Authors:
@@ -134,3 +140,8 @@ components:
         date:
           type: string
           format: date
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
