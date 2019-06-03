@@ -45,6 +45,7 @@ router.post("/removeFromCart", authMiddleware, asyncMiddleware(async (req, res, 
 router.post("/confirmReservation", authMiddleware, asyncMiddleware(async (req, res, next) => {
   const userId = req.user.id;
   const cart = await Cart.findAll({where: {userId}});
+  if(!(cart && cart.length)) throw createError(400, "Your Cart is empty");
   let maxReservationId = await Reserve.findAll({
       attributes: [[sequelize.fn('MAX', sequelize.col('reservationId')), 'maxReservationId']]
     });

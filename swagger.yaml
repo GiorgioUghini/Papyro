@@ -192,6 +192,12 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/Error'
+        '409':
+          description: The book was already in the cart
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
   /reservations/removeFromCart:
     post:
       summary: Remove the book with the given id from cart
@@ -232,6 +238,32 @@ paths:
                 $ref: '#components/schemas/Error'
         '409':
           description: The book with the given ID was not in the cart
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
+  /reservations/confirmReservation:
+    post:
+      summary: Reserve the books in the cart
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: An "ok" message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: string
+        '400':
+          description: The cart is empty
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
+        '401':
+          description: Unauthorized
           content:
             application/json:
               schema:
