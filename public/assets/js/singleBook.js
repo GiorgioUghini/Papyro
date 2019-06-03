@@ -3,9 +3,9 @@ let alreadyInCart = null;
 
 $(document).ready(async function () {
   const bookId = parseInt(/\d+$/g.exec(window.location.pathname)[0]);
-  await getCards(bookId);
   let book = await fetch("/api/books/"+bookId);
   book = await book.json();
+  await getCards(bookId);
   const $author = $("#author").html();
   for(let author of book.authors){
     $("#authors").append($author.replace(/%authorId%/g, author.id).replace(/%authorName%/g, author.name));
