@@ -18,9 +18,6 @@ module.exports = (sequelize, DataTypes) => {
     interview: {
       type: DataTypes.TEXT
     },
-    facts: {
-      type: DataTypes.JSONB
-    },
     isFavorite: {
       type: DataTypes.BOOLEAN
     }

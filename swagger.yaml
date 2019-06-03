@@ -18,18 +18,119 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Author'
+                  $ref: '#/components/schemas/Authors'
+  /authors/{id}:
+    get:
+      summary: Return author's details
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            format: int32
+          required: true
+          description: id of the author to get
+      responses:
+        '200':
+          description: An author with its books
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Author'
 components:
   schemas:
-    Author:
+    Authors:
       type: object
       properties:
         id:
           type: integer
-          format: int64
+          format: int32
         name:
           type: string
         picture:
           type: string
         bio:
           type: string
+    Author:
+      allOf:
+        - $ref: '#components/schemas/Authors'
+        - type: object
+          properties:
+            books:
+              type: array
+              $ref: '#components/schemas/BaseBook'
+    BaseBook:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        title:
+          type: string
+        picture:
+          type: string
+        abstract:
+          type: string
+        interview:
+          type: string
+        isFavorite:
+          type: boolean
+    Books:
+      allOf:
+        - $ref: '#components/schemas/BaseBook'
+        - type: object
+          properties:
+            genres:
+              type: array
+              items:
+                type: string
+            themes:
+              type: array
+              items:
+                type: string
+            authors:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int32
+                  name:
+                    type: string
+    Book:
+      allOf:
+        - $ref: '#components/schemas/Books'
+        - type: object
+          properties:
+            events:
+              type: array
+              $ref: '#components/schemas/Event'
+
+    Genre:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    Theme:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        location:
+          type: string
+        date:
+          type: string
+          format: date

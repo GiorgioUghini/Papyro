@@ -15,7 +15,12 @@ router.get("/:id", asyncMiddleware(async (req, res) => {
     where: {
       id: req.params.id
     },
-    include: [Book]
+    include: [{
+      model: Book,
+      through: {
+        attributes: []
+      }
+    }]
   });
   if(!author) throw createError(404);
   res.json(author);
