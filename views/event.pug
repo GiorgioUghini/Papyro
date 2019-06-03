@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    .container.mt-3
+        .row
+            .col-md-6.col-lg-3
+                img.w-100.mb-3#picture(src="", alt="")
+                a.btn.btn-primary.my-3.w-100#bookDetails(href="") View Book details
+            .col-md-6.col-lg-9
+                h1.title#title
+                h3.title Location
+                p#location
+                h3.title Date
+                p#date
+
+append js
+    script(src="/assets/js/event.js")

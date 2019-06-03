@@ -27,6 +27,18 @@ router.get("/", asyncMiddleware( async (req, res, next) => {
   res.json(events);
 }));
 
+router.get("/:id", asyncMiddleware(async (req, res, next) => {
+  const id = req.params.id;
+  if(!id) throw createError(400);
+  const event = await Event.findOne({
+    where: {
+      id
+    }
+  });
+  if(!event) throw(createError(404));
+  res.json(event);
+}));
+
 router.post("/", asyncMiddleware( async (req, res, next) => {
   const book = await Book.findOne({where: {id: req.body.bookId}});
   if(!book) throw createError(404, "Book not found");
