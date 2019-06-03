@@ -154,6 +154,44 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/Error'
+  /reservations/addToCart:
+    post:
+      summary: Add book to user's cart
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: The id of the book
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bookId:
+                  type: integer
+                  format: int32
+                  example: 1
+      responses:
+        '200':
+          description: An "ok" message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
+        '400':
+          description: Missin book id
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
   /users/login:
     post:
       summary: Logs in the user
@@ -181,7 +219,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  token:
+                  jwt:
                     type: string
         '400':
           description: Missing email or password
