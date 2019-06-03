@@ -356,6 +356,25 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/Error'
+  /users/logout:
+    post:
+      summary: Logs out the user
+      responses:
+        '200':
+          description: An 'ok' message from the server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
 
 components:
   securitySchemes:
