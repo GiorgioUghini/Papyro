@@ -20,17 +20,6 @@ $(document).ready(async function () {
     $events.append(compiledEvent);
   }
 
-  let maxHeight = 0;
-  const $cards = $(".card");
-  $cards.each(function(){
-    let height = $(this).height();
-    if(height > maxHeight) maxHeight = height;
-  });
-  maxHeight += 50;
-  $cards.each(function(){
-    $(this).height(maxHeight);
-  });
-
   let eventsThisMonth = null;
   $("#checkThisMonth").click(async function () {
     const checked = $(this).prop("checked");
