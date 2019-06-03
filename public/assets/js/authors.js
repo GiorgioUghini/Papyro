@@ -1,5 +1,6 @@
 $("document").ready(async function () {
   let authors = await fetch("/api/authors");
+  handleError(authors);
   authors = await authors.json();
   const $authorLeft = $("#author-left").html();
   const $authorRight = $("#author-right").html();

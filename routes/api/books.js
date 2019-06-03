@@ -157,6 +157,7 @@ router.get("/:bookId", asyncMiddleware(async (req, res, next) => {
       }
     }]
   });
+  if(!book) throw createError(404, "There is not a book with this ID");
   book = book.toJSON();
   if(book.themes) book.themes = mapToArray(book.themes, "name");
   if(book.genres) book.genres = mapToArray(book.genres, "name");

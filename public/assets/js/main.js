@@ -16,3 +16,11 @@ $(document).ready(function () {
     window.location.href = "/";
   });
 });
+
+const handleError = function(response){
+  if(response.ok) return;
+  response.json().then(obj => {
+    alert(obj.message);
+    window.location.href = "/";
+  });
+};

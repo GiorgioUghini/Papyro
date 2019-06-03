@@ -18,13 +18,14 @@ $(document).ready(async function(){
       bestSeller: $("#bestSellersCheck").prop("checked")
     });
     let books = await fetch("/api/books?"+queryString);
-    if(!books.ok){
+    if(books.status === 404){
       $("#noBooks").show();
       $cards.each(function(){
         $(this).hide();
       });
       return;
     }
+    handleError(books);
     books = await books.json();
     const bookIds = books.map(b => b.id);
     $cards.each(function () {

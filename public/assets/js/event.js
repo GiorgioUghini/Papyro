@@ -1,6 +1,7 @@
 $(document).ready(async function(){
   const eventId = /\d+$/g.exec(window.location.pathname)[0];
   let event = await fetch("/api/events/"+eventId);
+  handleError(event);
   event = await event.json();
   const bookId = event.bookId;
   let book = await fetch("/api/books/"+bookId);

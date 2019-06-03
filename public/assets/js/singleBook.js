@@ -4,6 +4,7 @@ let alreadyInCart = null;
 $(document).ready(async function () {
   const bookId = parseInt(/\d+$/g.exec(window.location.pathname)[0]);
   let book = await fetch("/api/books/"+bookId);
+  handleError(book);
   book = await book.json();
   await getCards(bookId);
   const $author = $("#author").html();

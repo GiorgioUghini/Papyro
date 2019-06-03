@@ -8,6 +8,7 @@ $(document).ready(async function () {
       authorization: "Bearer " + token
     })
   });
+  handleError(cart);
   cart = await cart.json();
   if(!cart.length) showEmptyCart();
   const cartTable = $("#cartTable");

@@ -30,8 +30,9 @@ const out = async (id) => {
         window.location.href = "/ourbooks/"+id;
       });
     },
-    error: function(richiesta,stato,errori){
-      alert("Error");
+    error: function(req,status,err){
+      alert(err);
+      window.location.href = "/";
     }
   });
 };

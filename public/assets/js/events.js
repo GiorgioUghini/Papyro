@@ -1,5 +1,6 @@
 $(document).ready(async function () {
   let events = await fetch("/api/events");
+  handleError(events);
   events = await events.json();
   for(let event of events){
     let book = await fetch("/api/books/"+event.bookId);

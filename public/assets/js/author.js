@@ -1,6 +1,7 @@
 $(document).ready(async function () {
   const authorId = /\d+$/g.exec(window.location.pathname)[0];
   let author = await fetch("/api/authors/"+authorId);
+  handleError(author);
   author = await author.json();
 
   $("#picture").attr("src", author.picture);
