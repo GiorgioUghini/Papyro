@@ -2,6 +2,7 @@ let express = require('express');
 let router = express.Router();
 const asyncMiddleware = require("../../middlewares/asyncMiddleware");
 const User = require("../../models").user;
+const ExpiredToken = require("../../models").expiredToken;
 const createError = require("http-errors");
 const jwt = require("jsonwebtoken");
 const {jwtSecret} = require("../../config");
@@ -27,17 +28,11 @@ router.post("/login", asyncMiddleware(async(req, res, next) => {
   if(!user) throw createError(404, "User not found");
   if(!bcrypt.compareSync(password, user.password)) throw createError(401, "Wrong password");
   const token = jwt.sign({id: user.id, email}, jwtSecret);
-  await User.update({token}, {where: {id: user.id}, fields:["token"]});
   res.json({jwt: token});
 }));
 
 router.post("/logout", authMiddleware, asyncMiddleware(async (req, res, next) => {
-  await User.update({
-    token: null
-    },{
-      where: {id: req.user.id},
-      fields: ["token"]
-  });
+  await ExpiredToken.create({token: req.user.token});
   res.json({msg:"ok"});
 }));
 

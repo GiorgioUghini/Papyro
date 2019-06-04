@@ -21,13 +21,6 @@ module.exports = (sequelize, DataTypes) => {
         let hash = bcrypt.hashSync(val, 5);
         this.setDataValue("password", hash);
       }
-    },
-    token: {
-      type: DataTypes.STRING
-    },
-    confirmed: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
     }
   });
   User.associate = function(m){

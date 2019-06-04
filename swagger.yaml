@@ -359,6 +359,8 @@ paths:
   /users/logout:
     post:
       summary: Logs out the user
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: An 'ok' message from the server
