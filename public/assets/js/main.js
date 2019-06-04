@@ -10,8 +10,19 @@ $(document).ready(function () {
     });
   }
 
-  $("#signoutButton").click(function(e) {
+  $("#signoutButton").click(async function(e) {
     e.preventDefault();
+    const response = await fetch("/api/users/logout", {
+      method: "post",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: "Bearer " + Cookies.get("token")
+      })
+    });
+    if(!response.ok){
+      const message = await response.json();
+      alert("Error: " + message);
+    }
     Cookies.remove("token");
     window.location.href = "/";
   });

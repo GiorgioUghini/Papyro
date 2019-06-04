@@ -31,7 +31,7 @@ router.post("/login", asyncMiddleware(async(req, res, next) => {
   res.json({jwt: token});
 }));
 
-router.get("/logout", authMiddleware, asyncMiddleware(async (req, res, next) => {
+router.post("/logout", authMiddleware, asyncMiddleware(async (req, res, next) => {
   await User.update({
     token: null
     },{
