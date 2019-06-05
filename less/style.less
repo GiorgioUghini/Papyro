@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
+@import "variables";
 
 body {
   font-family: "Quicksand", sans-serif;
   font-size: 1em;
-  padding-top: 70px;
+  padding-top: 56px;
   padding-bottom: 3rem;
   color: #5a5a5a;
+  @media (min-width:@md){
+    padding-top: 70px;
+  }
 }
 
 footer {
