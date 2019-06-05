@@ -15,6 +15,10 @@ router.get("/authors", asyncMiddleware(async (req, res) => {
   res.render("authors", { title: "Authors" })
 }));
 
+router.get("/ordering", asyncMiddleware(async (req, res) => {
+  res.render("ordering", { title: "Ordering and Shipping Information" })
+}));
+
 router.get("/authors/:id", asyncMiddleware(async (req, res) => {
   res.render("author", {title: "Authors"});
 }));
