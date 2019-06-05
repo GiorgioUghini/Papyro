@@ -2,10 +2,26 @@ extends layout
 
 block head
     link(rel='stylesheet', href='/assets/css/events.css')
+    link(rel='stylesheet', href='/assets/css/carousel.css')
+    link(rel='stylesheet', href='/assets/css/authors.css')
+
+block headline
+    #myCarousel.carousel.slide(data-ride='carousel')
+        ol.carousel-indicators
+            li.active(data-target='#myCarousel', data-slide-to='0')
+        .carousel-inner
+            .carousel-item.active
+                img.first-slide(src="https://images.unsplash.com/photo-1510511233900-1982d92bd835?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80", alt="Some old books in a library")
+                .container
+                    .carousel-caption
+                        h1.display-3.text-center Events
+                        p
+                            | Browse through our big catalog of events and get inspired!
 
 block content
     .container
-        h1.title Events
+        h3.pb-3.mb-4.ce.border-bottom
+            | Take your time, it's a complex decision. We know it.
         .form-check.mb-3
             input#checkThisMonth.form-check-input(type="checkbox")
             label.form-check-label(for="checkThisMonth") Only show events for this month
