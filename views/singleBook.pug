@@ -21,15 +21,15 @@ block content
                 img.w-100#backgroundImage.mb-3(src="", alt="")
                 a#addToCartBtn.btn.btn-primary.login-show.w-100.d-block(href="#") Add to Cart
             .col-md-6.col-lg-8
-                h1#bookTitle.title
-                p#abstract
                 h2.title Authors
                 .row#authors
-        h2.title Genres & Themes
-        p#genres
-        p#themes
-        h2.title.mt-3 Events
-        .row#events
+                h2.title.mt-3 Genres & Themes
+                p#genres
+                p#themes
+                h2.title.mt-3 Events
+                .row#events
+        h1#bookTitle.title
+        p#abstract
         h2.title.mt-3 Interview
         .row
             .col-12
@@ -41,10 +41,10 @@ block content
             #cards-container.d-flex.flex-wrap.justify-content-center
     +card.d-none
     #author.d-none
-        .col-sm-6.col-md-3
-            a.btn.btn-info.w-100(href="/authors/%authorId%") %authorName%
+        .col-sm-6.col-xl-3
+            a.btn.btn-info.w-100.mb-2(href="/authors/%authorId%") %authorName%
     #event.d-none
-        .col-sm-6.col-md-4.col-lg-3.text-center.border.p-4
+        .col-sm-6.col-lg-4.col-xl-3.text-center.border.p-4
             p
                 b= "Date: "
                 | %eventDate%
