@@ -1,6 +1,7 @@
 node_modules
 .idea
 public/assets/css
+public/pages/
 .env
 deploy.sh
 excludeFromDeploy.txt

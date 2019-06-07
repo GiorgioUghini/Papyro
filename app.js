@@ -4,10 +4,12 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 const lessMiddleware = require("less-middleware");
+const sendHtml = require("./middlewares/sendHtml");
 const cssbeautify = require("cssbeautify");
 const swaggerUi = require("swagger-ui-express");
 const YAML = require('yamljs');
 const config = require("./config");
+const {compilePug} = require("./utils");
 
 const swaggerDocument = YAML.load("./swagger.yaml");
 if(process.env.NODE_ENV !== "production") {
@@ -18,12 +20,15 @@ require("./models").initialize()
   .then(() => console.log("Database ready"))
   .catch((e) => console.error(e));
 
+compilePug();
+
 let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(sendHtml);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -41,9 +46,6 @@ app.get("/backend/spec.yaml", (req, res) => res.send(YAML.stringify(swaggerDocum
 app.use('/backend/swaggerui', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/', require('./routes/index'));
-app.use('/ourbooks', require('./routes/ourbooks'));
-app.use('/signin', require('./routes/signin'));
-app.use('/register', require('./routes/register'));
 app.use("/api/books", require("./routes/api/books"));
 app.use("/api/authors", require("./routes/api/authors"));
 app.use("/api/events", require("./routes/api/events"));
@@ -59,8 +61,6 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  console.log(err);
   res.locals.message = err.message;
   res.locals.error = process.env.NODE_ENV === 'production' ? {} : err;
 
@@ -69,7 +69,9 @@ app.use(function(err, req, res, next) {
   if(req.path.startsWith("/api/")){
     res.json(res.locals.error);
   }else{
-    res.render('error');
+    res.cookie("message", err.message);
+    res.cookie("error", err);
+    res.sendHtml("error");
   }
 });
 
