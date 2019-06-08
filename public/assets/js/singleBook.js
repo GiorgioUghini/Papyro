@@ -13,6 +13,7 @@ $(document).ready(async function () {
   }
   $("#backgroundImage").attr("src", book.picture).attr("alt", book.title);
   $("#bookTitle").text(book.title);
+  $("#name").text("Book: " + book.title);
   $("#abstract").text(book.abstract);
   $("#interview").text(book.interview);
   const genres = book.genres.join(", ");
