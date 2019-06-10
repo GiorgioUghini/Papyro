@@ -19,6 +19,10 @@ router.get("/ordering", asyncMiddleware(async (req, res) => {
   res.sendHtml("ordering")
 }));
 
+router.get("/contactus", asyncMiddleware(async (req, res) => {
+  res.sendHtml("contactus")
+}));
+
 router.get("/authors/:id", asyncMiddleware(async (req, res) => {
   res.sendHtml("author");
 }));
