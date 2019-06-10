@@ -11,6 +11,7 @@ block headline
         ol.carousel-indicators
             li.active(data-target='#myCarousel', data-slide-to='0')
         .carousel-inner
+            .opaque-overlay
             .carousel-item.active
                 img.first-slide(src="https://images.unsplash.com/photo-1551029506-0807df4e2031?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1491&q=80", alt="An old pen")
                 .container
@@ -60,4 +61,3 @@ block content
 
 append js
     script(type="module" src="/assets/js/singleBook.js")
-
