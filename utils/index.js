@@ -10,6 +10,10 @@ const mapToArray = (arr, field) => {
 
 const htmlPath = path.join(__dirname, "..", "public", "pages");
 
+if(!fs.existsSync(htmlPath)){
+  fs.mkdirSync(htmlPath);
+}
+
 const compilePug = () => {
   const pugPath = path.join(__dirname, "..", "views");
   const pugFiles = fs.readdirSync(pugPath).filter(f => (f.endsWith(".pug") && f!=="default.pug"));

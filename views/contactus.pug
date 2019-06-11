@@ -1,0 +1,31 @@
+extends layout
+include mixin/headline
+include  mixin/featuretteleft
+include  mixin/featuretteright
+
+block head
+    link(rel='stylesheet', href='/assets/css/carousel.css')
+    link(rel='stylesheet', href='/assets/css/index.css')
+
+block headline
+    #myCarousel.carousel.slide(data-ride='carousel')
+        ol.carousel-indicators
+            li.active(data-target='#myCarousel', data-slide-to='0')
+        .carousel-inner
+            .opaque-overlay
+            .carousel-item.active
+                img.first-slide(src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80", alt="Some tech thing")
+                .container
+                    .carousel-caption
+                        h1 Contact us
+                        p
+                            | By Email, or Phone Call, that is the question.
+                        p
+                            a.btn.btn-lg.btn-primary(href="mailto:info@papyro.tk", role='button') Send us an email
+
+block content
+    //TODO: CHANGE TEXT and/or LAYOUT
+    .container.marketing
+        +featuretteleft("Milan, Italy. ", "That's where we are.", "Welcome to the Papyro Public Library, a safe and caring place to help you connect to resources you need. Stop by to visit our newly renovated space: an atrium to enjoy the sun and a new business center with plenty of ebooks, audiobooks and digital magazines for you. We still have books (lots of them), magazines and journals. We look forward to helping you find books and ideas in Via Montenapoleone, 6, Milan, Italy.", "https://i.imgur.com/D0T7Qeu.jpg", "Man sitting on table typing on typewriter")
+        hr.featurette-divider
+        +featuretteright("Our contacts. ", "But only if you want.", "For any complaint concerning offline purchases, we kindly remind you that the standard procedure is to get back to the store with the receipt and ask for direct assistance. If you have questions about your order or need any general information about online purchases on our online store, our customer service team will be happy to assist you via email on info@papyro.tk or via phone call at +39 0213 265 77. We are waiting to hear from you, so please call us!", "https://i.imgur.com/OakFn5T.jpg", "Woman sitting on the sofa reading a book")
