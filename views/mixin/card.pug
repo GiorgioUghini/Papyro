@@ -1,13 +1,15 @@
 mixin card
     #card.d-none
-        .card.mb-4.box-shadow(data-book-id="%bookId%")
-            img.card-img-top(src='%picture%', alt='Card image cap')
-            .card-body
-                h5.card-title %title%
-                p.card-text
-                    | %abstract%
-                .d-flex.justify-content-between.align-items-center
-                    .btn-group
-                        button.btn.btn-sm.btn-outline-secondary(type='button') %maintheme%
-                        button.btn.btn-sm.btn-outline-secondary(type='button') %maingenre%
-                a.findOutMore.w-100.mt-2.btn.btn-primary(href='#' data-book-id="%bookId%") Find out more
+        .col-sm-6.col-md-6.col-lg-4.card-container
+            .card.mb-4(data-book-id="%bookId%")
+                img.card-img-top(src='%picture%', alt='Card image cap')
+                .card-body
+                    h5.card-title %title%
+                    p.card-text
+                        | %abstract%
+                    .d-flex.justify-content-between.align-items-center
+                        .btn-group
+                            button.btn.btn-sm.btn-outline-secondary(type='button') %maintheme%
+                            button.btn.btn-sm.btn-outline-secondary(type='button') %maingenre%
+                .card-footer
+                    a.findOutMore.w-100.mt-2.btn.btn-primary(href='#' data-book-id="%bookId%") Find out more
