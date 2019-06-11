@@ -9,7 +9,7 @@ $(document).ready(async function(){
     getGenres()
   ]);
 
-  $(".genre").click(function () {
+  $("button.genre").click(function () {
     const selectedGenre = $(this).html();
     if(selectedGenre){
       $("#genresSelect").children().each(function () {
