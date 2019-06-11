@@ -4,7 +4,7 @@ info:
   description: Hypermedia project for a library (2019)
   version: 1.0.0
 servers:
-  - url: http://papyro.tk/api
+  - url: https://papyro.tk/api
     description: Base URL of the API server
 paths:
   /authors:
