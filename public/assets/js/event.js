@@ -9,7 +9,7 @@ $(document).ready(async function(){
 
   $("#picture").attr("src", book.picture);
   $("#bookDetails").attr("href", "/ourbooks/"+bookId);
-  $("#title").text(book.title + " - Presentation event");
+  $("#name").text(book.title + " - Presentation event");
   $("#location").text(event.location);
   $("#date").text(new Date(event.date).toDateString());
 });
