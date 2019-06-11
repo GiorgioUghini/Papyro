@@ -10,7 +10,15 @@ $(document).ready(async function(){
   ]);
 
   $(".genre").click(function () {
-    window.location.href = "/ourbooks?genre="+$(this).html();
+    const selectedGenre = $(this).html();
+    if(selectedGenre){
+      $("#genresSelect").children().each(function () {
+        if($(this).text()===selectedGenre){
+          $("#genresSelect").val($(this).val());
+          $("#submitFiltersBtn").click();
+        }
+      });
+    }
   });
 
   $("#submitFiltersBtn").click(async function () {
@@ -34,24 +42,13 @@ $(document).ready(async function(){
     books = await books.json();
     const bookIds = books.map(b => b.id);
     $cards.each(function () {
-      $(this).show();
+      $(this).parent().show();
       const bookId = $(this).data("book-id");
       if(!bookIds.includes(bookId)){
-        $(this).hide();
+        $(this).parent().hide();
       }
     })
-  })
-
-  const regex = /genre=([\w-]+)/.exec(window.location.search);
-  const selectedGenre = regex && regex[1];
-  if(selectedGenre){
-    $("#genresSelect").children().each(function () {
-      if($(this).text()===selectedGenre){
-        $("#genresSelect").val($(this).val());
-        $("#submitFiltersBtn").click();
-      }
-    });
-  }
+  });
 });
 
 function getAuthors(){
