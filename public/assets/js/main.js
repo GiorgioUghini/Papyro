@@ -26,6 +26,17 @@ $(document).ready(function () {
     Cookies.remove("token");
     window.location.href = "/";
   });
+
+  const path = window.location.pathname;
+  if(path!=="/"){
+    $("nav.navbar .nav-item.active").removeClass("active");
+    $("nav.navbar .nav-item").each(function(){
+      const href = $(this).children("a").attr("href");
+      if(path.startsWith(href) && href!=="/"){
+        $(this).addClass("active");
+      }
+    })
+  }
 });
 
 const handleError = function(response){
