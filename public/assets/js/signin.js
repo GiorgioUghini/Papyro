@@ -18,7 +18,7 @@ $(document).ready(function () {
       });
 
       var bookId = new URLSearchParams(window.location.search).get('orderBook');
-      if (bookId !== undefined) {
+      if (bookId) {
         const requestBody = {
           method: "post",
           body: JSON.stringify({
