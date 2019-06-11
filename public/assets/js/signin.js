@@ -16,7 +16,28 @@ $(document).ready(function () {
       Cookies.set("token", jwt, {
         expires: new Date("2099-12-12")
       });
-      window.location.replace('/');
+
+      var bookId = new URLSearchParams(window.location.search).get('orderBook');
+      if (bookId !== undefined) {
+        const requestBody = {
+          method: "post",
+          body: JSON.stringify({
+            bookId
+          }),
+          headers: new Headers({
+            "Content-Type": "application/json",
+            authorization: "Bearer " + jwt
+          })
+        };
+        const url = "/api/reservations/addToCart";
+        let result = await fetch(url, requestBody);
+        if(result.ok){
+          window.location.replace('/ourbooks/' + bookId);
+        }
+      } else {
+        window.location.replace('/');
+      }
+
     }else{
       const {message} = await result.json();
       alert("Error: " + message);

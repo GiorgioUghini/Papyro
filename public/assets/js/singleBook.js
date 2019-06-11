@@ -49,25 +49,31 @@ $(document).ready(async function () {
 
   $("#addToCartBtn").click(async function (e) {
     e.preventDefault();
-    const requestBody = {
-      method: "post",
-      body: JSON.stringify({
-        bookId
-      }),
-      headers: new Headers({
-        "Content-Type": "application/json",
-        authorization: token
-      })
-    };
-    if(alreadyInCart === null) return;
+    const token = Cookies.get("token");
+    if(token) {
+      const requestBody = {
+        method: "post",
+        body: JSON.stringify({
+          bookId
+        }),
+        headers: new Headers({
+          "Content-Type": "application/json",
+          authorization: token
+        })
+      };
+      if(alreadyInCart === null) return;
 
-    const url = (alreadyInCart) ? "/api/reservations/removeFromCart" : "/api/reservations/addToCart";
+      const url = (alreadyInCart) ? "/api/reservations/removeFromCart" : "/api/reservations/addToCart";
 
-    let result = await fetch(url, requestBody);
-    if(result.ok){
-      alreadyInCart = !alreadyInCart;
-      updateBtnText();
+      let result = await fetch(url, requestBody);
+      if(result.ok){
+        alreadyInCart = !alreadyInCart;
+        updateBtnText();
+      }
+    } else {
+      window.location.href = "/signin?orderBook=" + bookId;
     }
+
   })
 });
 
