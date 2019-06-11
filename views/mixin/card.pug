@@ -2,15 +2,14 @@ mixin card
     #card.d-none
         .col-sm-6.col-md-6.col-lg-4.card-container
             .card.mb-4(data-book-id="%bookId%")
-                a(href='/ourbooks/%bookId%')
-                    img.card-img-top(src='%picture%', alt='Card image cap')
+                img.card-img-top(src='%picture%', alt='Card image cap')
                 .card-body
                     h5.card-title %title%
                     p.card-text
                         | %abstract%
                     .d-flex.justify-content-between.align-items-center
-                        .btn-group
-                            button.btn.btn-sm.btn-outline-secondary(type='button') %maintheme%
-                            button.btn.btn-sm.btn-outline-secondary(type='button') %maingenre%
+                        .btn-group.genres
                 .card-footer
                     a.findOutMore.w-100.mt-2.btn.btn-primary(href='#' data-book-id="%bookId%") Find out more
+    #genreButton.d-none
+        button.btn.btn-sm.btn-outline-secondary.genre(type='button')

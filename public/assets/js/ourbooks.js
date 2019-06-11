@@ -8,6 +8,11 @@ $(document).ready(async function(){
     getThemes(),
     getGenres()
   ]);
+
+  $(".genre").click(function () {
+    window.location.href = "/ourbooks?genre="+$(this).html();
+  });
+
   $("#submitFiltersBtn").click(async function () {
     const $cards = $(".card");
     const queryString = $.param({
@@ -36,46 +41,57 @@ $(document).ready(async function(){
       }
     })
   })
+
+  const regex = /genre=([\w-]+)/.exec(window.location.search);
+  const selectedGenre = regex && regex[1];
+  if(selectedGenre){
+    $("#genresSelect").children().each(function () {
+      if($(this).text()===selectedGenre){
+        $("#genresSelect").val($(this).val());
+        $("#submitFiltersBtn").click();
+      }
+    });
+  }
 });
 
 function getAuthors(){
   return new Promise(function(resolve, reject){
     fetch("/api/authors")
-      .then(async function(authors){
-        authors = await authors.json();
-        for(let author of authors){
-          $("#authorsSelect").append(`<option value="${author.id}">${author.name}</option>`);
-        }
-        resolve();
-      })
-      .catch(reject);
+        .then(async function(authors){
+          authors = await authors.json();
+          for(let author of authors){
+            $("#authorsSelect").append(`<option value="${author.id}">${author.name}</option>`);
+          }
+          resolve();
+        })
+        .catch(reject);
   });
 }
 
 function getThemes(){
   return new Promise(function(resolve, reject){
     fetch("/api/themes")
-      .then(async function(themes){
-        themes = await themes.json();
-        for(let theme of themes){
-          $("#themesSelect").append(`<option value="${theme.id}">${theme.name}</option>`);
-        }
-        resolve();
-      })
-      .catch(reject);
+        .then(async function(themes){
+          themes = await themes.json();
+          for(let theme of themes){
+            $("#themesSelect").append(`<option value="${theme.id}">${theme.name}</option>`);
+          }
+          resolve();
+        })
+        .catch(reject);
   });
 }
 
 function getGenres(){
   return new Promise(function(resolve, reject){
     fetch("/api/genres")
-      .then(async function(genres){
-        genres = await genres.json();
-        for(let genre of genres){
-          $("#genresSelect").append(`<option value="${genre.id}">${genre.name}</option>`);
-        }
-        resolve();
-      })
-      .catch(reject);
+        .then(async function(genres){
+          genres = await genres.json();
+          for(let genre of genres){
+            $("#genresSelect").append(`<option value="${genre.id}">${genre.name}</option>`);
+          }
+          resolve();
+        })
+        .catch(reject);
   });
 }

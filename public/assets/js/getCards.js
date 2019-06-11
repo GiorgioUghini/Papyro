@@ -17,13 +17,18 @@ const out = async (id) => {
       }
       result.forEach(card => {
         let c = $card.html().replace("%title%", card.title)
-          .replace("%abstract%", card.abstract.truncate())
-          .replace("%maintheme%", card.themes[0])
-          .replace("%maingenre%", card.genres[0])
-          .replace("%picture%", card.picture)
-          .replace(/%bookId%/g, card.id);
+            .replace("%abstract%", card.abstract.truncate())
+            .replace("%picture%", card.picture)
+            .replace(/%bookId%/g, card.id);
         $cardsContainer.append(c);
+        const $genres = $(".card[data-book-id="+ card.id +"]").find(".genres");
+        for(let genre of card.genres){
+          const $genre = $($("#genreButton").html());
+          $genre.html(genre);
+          $genres.append($genre);
+        }
       });
+
       $(".card .findOutMore").click(function (e) {
         e.preventDefault();
         const id = $(this).data("bookId");
