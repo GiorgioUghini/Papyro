@@ -5,7 +5,7 @@ $(document).ready(async function () {
   author = await author.json();
 
   $("#picture").attr("src", author.picture);
-  $("#name").text("Author: " + author.name);
+  $("#name").text(author.name);
   $("#bio").text(author.bio);
 
   const $book = $("#book").html();
