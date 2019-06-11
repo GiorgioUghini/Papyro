@@ -9,17 +9,17 @@ $(document).ready(async function(){
     getGenres()
   ]);
 
-  $("button.genre").click(function () {
+$('body').on('click', '.genre', function (){
     const selectedGenre = $(this).html();
     if(selectedGenre){
-      $("#genresSelect").children().each(function () {
-        if($(this).text()===selectedGenre){
-          $("#genresSelect").val($(this).val());
-          $("#submitFiltersBtn").click();
-        }
-      });
+        $("#genresSelect").children().each(function () {
+            if($(this).text()===selectedGenre){
+                $("#genresSelect").val($(this).val());
+                $("#submitFiltersBtn").click();
+            }
+        });
     }
-  });
+});
 
   $("#submitFiltersBtn").click(async function () {
     const $cards = $(".card");
