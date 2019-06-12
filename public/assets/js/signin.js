@@ -17,8 +17,8 @@ $(document).ready(function () {
         expires: new Date("2099-12-12")
       });
 
-      var bookId = new URLSearchParams(window.location.search).get('orderBook');
-      if (bookId !== undefined) {
+      const bookId = new URLSearchParams(window.location.search).get('orderBook');
+      if (bookId) {
         const requestBody = {
           method: "post",
           body: JSON.stringify({
