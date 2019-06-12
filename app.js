@@ -17,8 +17,8 @@ if(process.env.NODE_ENV !== "production") {
 }
 
 require("./models").initialize()
-  .then(() => console.log("Database ready"))
-  .catch((e) => console.error(e));
+    .then(() => console.log("Database ready"))
+    .catch((e) => console.error(e));
 
 compilePug();
 
@@ -61,16 +61,16 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  res.locals.message = err.message;
-  res.locals.error = process.env.NODE_ENV === 'production' ? {} : err;
+  const {message} = err;
+  const error = process.env.NODE_ENV === 'production' ? {} : err;
+  error.message = message;
 
   // render the error page
   res.status(err.status || 500);
   if(req.path.startsWith("/api/")){
-    res.json(res.locals.error);
+    res.json(error);
   }else{
-    res.cookie("message", err.message);
-    res.cookie("error", err);
+    res.cookie("error", JSON.stringify(error));
     res.sendHtml("error");
   }
 });
