@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     m.book.hasMany(m.event);
     m.book.belongsToMany(m.theme, {through: m.bookTheme});
     m.book.belongsToMany(m.genre, {through: m.bookGenre});
+    m.book.hasMany(m.review);
   };
   return Book;
 };

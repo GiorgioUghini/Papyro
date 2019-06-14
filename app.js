@@ -53,6 +53,7 @@ app.use("/api/genres", require("./routes/api/genres"));
 app.use("/api/themes", require("./routes/api/themes"));
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/reservations", require("./routes/api/reservations"));
+app.use("/api/reviews", require("./routes/api/reviews"));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
