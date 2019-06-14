@@ -26,13 +26,28 @@ $(document).ready(async function () {
     const $event = $("#event").html();
     for(let event of book.events){
       let compiledEvent = $event
-        .replace("%eventDate%", new Date(event.date).toDateString())
-        .replace("%eventLocation%", event.location);
+          .replace("%eventDate%", new Date(event.date).toDateString())
+          .replace("%eventLocation%", event.location);
       $events.append(compiledEvent);
     }
   }else{
     $events.hide();
   }
+
+  const $reviews = $("#reviews");
+  const $review = $("#review").html();
+  $("#noReviews").hide();
+  if(book.reviews && book.reviews.length){
+    for(let review of book.reviews){
+      let compiledReview = $review
+          .replace("%name%", review.name)
+          .replace("%comment%", review.comment);
+      $reviews.append(compiledReview);
+    }
+  }else{
+    $("#noReviews").show();
+  }
+
 
   const token = Cookies.get("token");
   if(token){

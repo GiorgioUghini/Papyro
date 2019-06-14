@@ -46,6 +46,10 @@ block content
         h1.title.mb-3 Similar books
         .album
             #cards-container.d-flex.flex-wrap.justify-content-center
+    .container.mt-5
+        h1 Reviews
+        #reviews
+            p#noReviews No reviews for this book yet
     +card.d-none
     #author.d-none
         .col-sm-6.col-xl-3
@@ -58,6 +62,10 @@ block content
             p.mb-0
                 b= "Location: "
                 | %eventLocation%
+    #review.d-none
+        .mb-4
+            h4 %name%
+            p %comment%
 
 append js
     script(type="module" src="/assets/js/singleBook.js")
