@@ -7,6 +7,7 @@ const Theme = require("../../models").theme;
 const Genre = require("../../models").genre;
 const Reserve = require("../../models").reserve;
 const Event = require("../../models").event;
+const Review = require("../../models").review;
 const Op = require("../../models").Sequelize.Op;
 const Sequelize = require("../../models").Sequelize;
 const {mapToArray} = require("../../utils");
@@ -155,6 +156,8 @@ router.get("/:bookId", asyncMiddleware(async (req, res, next) => {
       through:{
         attributes: []
       }
+    },{
+      model: Review
     }]
   });
   if(!book) throw createError(404, "There is not a book with this ID");

@@ -133,6 +133,87 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/Theme'
+  /reviews:
+    get:
+      tags:
+        - reviews
+      summary: Returns all reviews
+      responses:
+        '200':
+          description: An array containing all reviews and the id of the book
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Review'
+  /reviews/{id}:
+    get:
+      tags:
+        - reviews
+      summary: Returns the review with the given id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            format: int32
+            example: 1
+          required: true
+          description: id of the review to get
+      responses:
+        '200':
+          description: The review details and the book id
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Review'
+        '400':
+          description: Invalid param Id, must be an integer
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
+        '404':
+          description: No review with the given id
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
+  /reviews/findByBookId/{bookId}:
+    get:
+      tags:
+        - reviews
+      summary: Returns the reviews whose book has the given id
+      parameters:
+        - in: path
+          name: bookId
+          schema:
+            type: integer
+            format: int32
+            example: 1
+          required: true
+          description: id of the book
+      responses:
+        '200':
+          description: The review details and the book id
+          content:
+            application/json:
+              type: array
+              items:
+                $ref: '#components/schemas/Review'
+        '400':
+          description: Invalid param Id, must be an integer
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
+        '404':
+          description: No review with the given id
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
   /reservations/cart:
     get:
       summary: Returns all the books in the cart
@@ -451,10 +532,16 @@ components:
           properties:
             events:
               type: array
-              $ref: '#components/schemas/Event'
+              items:
+                $ref: '#components/schemas/Event'
             similarBooks:
               type: array
-              $ref: '#components/schemas/BaseBook'
+              items:
+                $ref: '#components/schemas/BaseBook'
+            reviews:
+              type: array
+              items:
+                $ref: '#components/schemas/Review'
 
     Genre:
       type: object
@@ -483,6 +570,19 @@ components:
         date:
           type: string
           format: date
+    Review:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        comment:
+          type: string
+        bookId:
+          type: integer
+          format: int32
     Error:
       type: object
       properties:
