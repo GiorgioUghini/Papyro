@@ -20,7 +20,7 @@ $(document).ready(function () {
       })
     });
     if(response.ok){
-      window.location.href = "/";
+      window.location.href = "/signin";
     }else{
       const {message} = await response.json();
       alert("Error: " + message);
