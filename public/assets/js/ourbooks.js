@@ -22,6 +22,7 @@ $('body').on('click', '.genre', function (){
 });
 
   $("#submitFiltersBtn").click(async function () {
+    $("#noBooks").hide();
     const $cards = $(".card");
     const queryString = $.param({
       authors: $("#authorsSelect").val(),
@@ -34,7 +35,7 @@ $('body').on('click', '.genre', function (){
     if(books.status === 404){
       $("#noBooks").show();
       $cards.each(function(){
-        $(this).hide();
+        $(this).parent().hide();
       });
       return;
     }
