@@ -20,8 +20,9 @@ const compilePug = () => {
   pugFiles.forEach(f => {
     const html = pug.renderFile(path.join(pugPath, f), { title: "Papyro" }, undefined);
     const htmlFileName = f.replace(".pug", ".html");
-    fs.writeFileSync(path.join(htmlPath, htmlFileName), html);
-  })
+    let tmpPath = (htmlFileName==="index.html") ? path.join(htmlPath, "..") : htmlPath;
+    fs.writeFileSync(path.join(tmpPath, htmlFileName), html);
+  });
 };
 
 module.exports = {
