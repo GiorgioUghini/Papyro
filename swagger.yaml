@@ -10,6 +10,8 @@ paths:
   /authors:
     get:
       summary: Returns a list of authors.
+      tags:
+        - authors
       responses:
         '200':    # status code
           description: A JSON array of authors
@@ -22,6 +24,8 @@ paths:
   /authors/{id}:
     get:
       summary: Return author's details
+      tags:
+        - authors
       parameters:
         - in: path
           name: id
@@ -46,6 +50,8 @@ paths:
   /books:
     get:
       summary: A list of books
+      tags:
+        - books
       parameters:
         - in: query
           name: themes
@@ -91,6 +97,8 @@ paths:
   /books/{id}:
     get:
       summary: Return book's details
+      tags:
+        - books
       parameters:
         - in: path
           name: id
@@ -116,6 +124,8 @@ paths:
   /genres:
     get:
       summary: Returns all genres
+      tags:
+        - genres
       responses:
         '200':
           description: An array containing all genres
@@ -126,6 +136,8 @@ paths:
   /themes:
     get:
       summary: Returns all themes
+      tags:
+        - themes
       responses:
         '200':
           description: An array containing all themes
@@ -217,6 +229,8 @@ paths:
   /reservations/cart:
     get:
       summary: Returns all the books in the cart
+      tags:
+        - reservations
       security:
         - bearerAuth: []
       responses:
@@ -238,6 +252,8 @@ paths:
   /reservations/addToCart:
     post:
       summary: Add book to user's cart
+      tags:
+        - reservations
       security:
         - bearerAuth: []
       requestBody:
@@ -282,6 +298,8 @@ paths:
   /reservations/removeFromCart:
     post:
       summary: Remove the book with the given id from cart
+      tags:
+        - reservations
       security:
         - bearerAuth: []
       requestBody:
@@ -326,6 +344,8 @@ paths:
   /reservations/confirmReservation:
     post:
       summary: Reserve the books in the cart
+      tags:
+        - reservations
       security:
         - bearerAuth: []
       responses:
@@ -352,6 +372,8 @@ paths:
   /users/login:
     post:
       summary: Logs in the user
+      tags:
+        - users
       requestBody:
         description: email and password
         required: true
@@ -399,6 +421,8 @@ paths:
   /users/register:
     post:
       summary: Register the user
+      tags:
+        - users
       requestBody:
         description: email and password
         required: true
@@ -440,6 +464,8 @@ paths:
   /users/logout:
     post:
       summary: Logs out the user
+      tags:
+        - users
       security:
         - bearerAuth: []
       responses:
