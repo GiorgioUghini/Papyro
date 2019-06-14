@@ -5,7 +5,6 @@ body {
   font-family: "Quicksand", sans-serif;
   font-size: 1em;
   padding-top: 56px;
-  padding-bottom: 3rem;
   color: #5a5a5a;
   h2, h3{
     font-weight: 300;
@@ -79,4 +78,24 @@ footer p {
 
 .login-show {
   display: none;
+}
+
+footer{
+  text-align: center;
+  .links{
+    margin-bottom: 30px;
+  }
+  @media (min-width: @sm){
+    .links{
+      text-align: left;
+      margin-bottom: 0;
+      .links-container{
+        padding-left: 20px;
+        text-align: left;
+      }
+    }
+    .names{
+      text-align: right;
+    }
+  }
 }

@@ -1,10 +1,20 @@
 mixin footer
     footer.container
         hr
-        p.float-right
-            a(href='#') Back to top
-        p
-            | © 2018-2019 Papyro, Inc. ·
-            a(href='#') Privacy
-            |  ·
-            a(href='#') Terms
+        .row
+            .col-12.col-md-4.links
+                h3 Links
+                .links-container
+                    p
+                        a(href="#") Latest products
+                    p
+                        a(href="#") Require a gift card
+                    p
+                        a(href="#") FAQ
+            .col-12.col-md-8.names
+                p
+                    | Made with ❤ by
+                    a(href="https://github.com/CosimoRusso" target="_blank")= " Cosimo Russo "
+                    | &
+                    a(href="https://github.com/GiorgioUghini" target="_blank")= " Giorgio Ughini"
+
