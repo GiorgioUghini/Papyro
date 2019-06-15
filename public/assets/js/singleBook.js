@@ -26,7 +26,7 @@ $(document).ready(async function () {
     const $event = $("#event").html();
     for(let event of book.events){
       let compiledEvent = $event
-          .replace("%eventDate%", new Date(event.date).toDateString())
+          .replace("%eventId%", event.id)
           .replace("%eventLocation%", event.location);
       $events.append(compiledEvent);
     }

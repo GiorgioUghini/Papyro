@@ -55,13 +55,8 @@ block content
         .col-sm-6.col-xl-3
             a.btn.btn-info.w-100.mb-2(href="/authors/%authorId%") %authorName%
     #event.d-none
-        .col-sm-6.col-lg-4.col-xl-3.text-center.border.p-4
-            p
-                b= "Date: "
-                | %eventDate%
-            p.mb-0
-                b= "Location: "
-                | %eventLocation%
+        .col-sm-6.col-xl-3
+            a.btn.btn-warning.w-100.mb-2.font-weight-bold(href="/events/%eventId%") %eventLocation%
     #review.d-none
         .mb-4
             h4 %name%
