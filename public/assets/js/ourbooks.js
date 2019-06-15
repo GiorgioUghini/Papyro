@@ -1,6 +1,6 @@
 import getCards from "./getCards.js";
 $(document).ready(async function(){
-  await getCards();
+  await getCards(null, true);
 
   $("#noBooks").hide();
   await Promise.all([

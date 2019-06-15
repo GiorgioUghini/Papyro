@@ -1,4 +1,4 @@
-const out = async (id) => {
+const out = async (id, showGenres) => {
   const url = id ? "/api/books/"+id : "/api/books";
   $.ajax({
     url,
@@ -22,10 +22,14 @@ const out = async (id) => {
             .replace(/%bookId%/g, card.id);
         $cardsContainer.append(c);
         const $genres = $(".card[data-book-id="+ card.id +"]").find(".genres");
-        for(let genre of card.genres){
-          const $genre = $($("#genreButton").html());
-          $genre.html(genre);
-          $genres.append($genre);
+        if(showGenres){
+          for(let genre of card.genres){
+            const $genre = $($("#genreButton").html());
+            $genre.html(genre);
+            $genres.append($genre);
+          }
+        }else{
+          $genres.hide();
         }
       });
 
