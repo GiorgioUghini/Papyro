@@ -1,6 +1,7 @@
 let express = require('express');
 let router = express.Router();
 const asyncMiddleware = require("../../middlewares/asyncMiddleware");
+const allowPosts = require("../../middlewares/allowPosts");
 const Book = require("../../models").book;
 const Author = require("../../models").author;
 const Theme = require("../../models").theme;
@@ -68,7 +69,7 @@ router.get("/", asyncMiddleware( async (req, res, next) => {
   res.json(books);
 }));
 
-router.post("/", asyncMiddleware( async (req, res, next) => {
+router.post("/", allowPosts, asyncMiddleware( async (req, res, next) => {
   const authors = await Author.findAll({where: {
       id: {[Op.or]: req.body.authors}
     }});
@@ -93,7 +94,7 @@ router.post("/", asyncMiddleware( async (req, res, next) => {
   res.json(newBook);
 }));
 
-router.post("/similar", asyncMiddleware(async (req, res, next) => {
+router.post("/similar", allowPosts, asyncMiddleware(async (req, res, next) => {
   const {id1, id2} = req.body;
   if(parseInt(id1)===parseInt(id2)) throw createError(400, "Ids cannot be identical");
   const book1 = await Book.findOne({

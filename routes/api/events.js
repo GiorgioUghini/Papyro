@@ -1,6 +1,7 @@
 let express = require('express');
 let router = express.Router();
 const asyncMiddleware = require("../../middlewares/asyncMiddleware");
+const allowPosts = require("../../middlewares/allowPosts");
 const Event = require("../../models").event;
 const Book = require("../../models").book;
 const createError = require("http-errors");
@@ -39,7 +40,7 @@ router.get("/:id", asyncMiddleware(async (req, res, next) => {
   res.json(event);
 }));
 
-router.post("/", asyncMiddleware( async (req, res, next) => {
+router.post("/", allowPosts, asyncMiddleware( async (req, res, next) => {
   const book = await Book.findOne({where: {id: req.body.bookId}});
   if(!book) throw createError(404, "Book not found");
   const newEvent = await Event.create(req.body);

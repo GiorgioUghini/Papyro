@@ -9,7 +9,8 @@ const common = {
     port: process.env.DB_PORT || 5432
   },
   force: (process.env.FORCE==="true") || false,
-  jwtSecret: "spgion5in4t4"
+  jwtSecret: "spgion5in4t4",
+  allowPosts: (process.env.ALLOW_POSTS === "true")
 };
 
 const development = {

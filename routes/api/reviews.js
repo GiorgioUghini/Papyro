@@ -1,6 +1,7 @@
 let express = require('express');
 let router = express.Router();
 const asyncMiddleware = require("../../middlewares/asyncMiddleware");
+const allowPosts = require("../../middlewares/allowPosts");
 const Review = require("../../models").review;
 const Book = require("../../models").book;
 const createError = require("http-errors");
@@ -32,7 +33,7 @@ router.get("/:id", asyncMiddleware(async (req, res, next) => {
     res.json(review);
 }));
 
-router.post("/", asyncMiddleware(async (req, res, next) => {
+router.post("/", allowPosts, asyncMiddleware(async (req, res, next) => {
     const {bookId, name, comment} = req.body;
     if(!(bookId && name && comment)) throw createError(400, "All fields are mandatory");
     const book = await Book.findOne({where: {id: bookId}});

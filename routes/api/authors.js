@@ -1,6 +1,7 @@
 let express = require('express');
 let router = express.Router();
 const asyncMiddleware = require("../../middlewares/asyncMiddleware");
+const allowPosts = require("../../middlewares/allowPosts");
 const Author = require("../../models").author;
 const Book = require("../../models").book;
 const createError = require("http-errors");
@@ -26,7 +27,7 @@ router.get("/:id", asyncMiddleware(async (req, res) => {
   res.json(author);
 }));
 
-router.post("/", asyncMiddleware( async (req, res) => {
+router.post("/", allowPosts, asyncMiddleware( async (req, res) => {
   const newAuthor = await Author.create(req.body);
   res.json(newAuthor);
 }));
