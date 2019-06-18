@@ -31,6 +31,7 @@ paths:
           name: id
           schema:
             type: integer
+            example: 1
             format: int32
           required: true
           description: id of the author to get
@@ -41,6 +42,12 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/Author'
+        '400':
+          description: Id must be an integer
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
         '404':
           description: No authors with that id
           content:
@@ -117,6 +124,78 @@ paths:
                 $ref: '#components/schemas/Book'
         '404':
           description: No book with the given id
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
+  /events:
+    get:
+      summary: Returns all events
+      tags:
+        - events
+      parameters:
+        - in: query
+          name: startDate
+          description: only select events from this date (format mm/dd/yyyy)
+          schema:
+            type: string
+            format: date
+            example: 6/1/2019
+        - in: query
+          name: endDate
+          description: only select events up to this date (format mm/dd/yyyy)
+          schema:
+            type: string
+            format: date
+            example: 7/1/2019
+      responses:
+        '200':
+          description: an array containing all events
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Event'
+        '400':
+          description: Bad formatted date
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
+        '404':
+          description: No events in this date range
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
+  /events/{id}:
+    get:
+      summary: Returns the event with the given id
+      tags:
+        - events
+      parameters:
+        - in: path
+          name: id
+          description: The id of the event to get
+          schema:
+            type: integer
+            format: int32
+            example: 1
+          required: true
+      responses:
+        '200':
+          description: The event details
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Event'
+        '400':
+          description: Event id must be an integer
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
+        '404':
+          description: Event not found
           content:
             application/json:
               schema:
@@ -597,6 +676,9 @@ components:
         date:
           type: string
           format: date
+        bookId:
+          type: integer
+          format: int32
     Review:
       type: object
       properties:

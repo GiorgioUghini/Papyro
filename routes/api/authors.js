@@ -12,9 +12,11 @@ router.get("/", asyncMiddleware( async (req, res) => {
 }));
 
 router.get("/:id", asyncMiddleware(async (req, res) => {
+  const id= req.params.id;
+  if(isNaN(id)) throw createError(400, "Author id must be an integer");
   const author = await Author.findOne({
     where: {
-      id: req.params.id
+      id
     },
     include: [{
       model: Book,

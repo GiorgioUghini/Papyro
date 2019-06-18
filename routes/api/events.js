@@ -11,25 +11,28 @@ router.get("/", asyncMiddleware( async (req, res, next) => {
   const where = {};
   let {startDate, endDate} = req.query;
   if(startDate){
+    if(isNaN(Date.parse(startDate))) throw createError(400, "Invalid value for start date param");
     startDate = new Date(startDate);
-    console.log(startDate.toDateString());
     where.date = {
       [Op.gte]: startDate
     }
   }
   if(endDate){
+    if(isNaN(Date.parse(endDate))) throw createError(400, "Invalid value for end date param");
     endDate = new Date(endDate);
-    console.log(endDate.toDateString());
+    if(!where.date) where.date = {};
     where.date[Op.lt] = endDate;
   }
   let events = await Event.findAll({
     where
   });
+  if(!events.length) throw createError(404, "No events in this date range");
   res.json(events);
 }));
 
 router.get("/:id", asyncMiddleware(async (req, res, next) => {
   const id = req.params.id;
+  if(isNaN(id)) throw createError(400, "Id must be an integer");
   if(!id) throw createError(400);
   const event = await Event.findOne({
     where: {
