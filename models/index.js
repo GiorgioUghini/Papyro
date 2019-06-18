@@ -5,7 +5,7 @@ const basename = path.basename(__filename);
 const out = {};
 const { db, force } = require("../config");
 
-const sequelize = new Sequelize(db.name, db.user, db.password, {
+const dbOptions = {
   host: db.host,
   port: db.port,
   dialect: 'postgres',
@@ -16,7 +16,9 @@ const sequelize = new Sequelize(db.name, db.user, db.password, {
     acquire: 30000,
     idle: 10000
   },
-});
+};
+
+const sequelize = db.connection_string ? new Sequelize(db.connection_string, dbOptions) : new Sequelize(db.name, db.user, db.password, dbOptions);
 
 fs
   .readdirSync(__dirname)
