@@ -6,5 +6,4 @@ public/index.html
 public/backend/main.html
 public/backend/app.zip
 .env
-deploy.sh
-excludeFromDeploy.txt
+pandoc.sh

@@ -1,6 +1,7 @@
 const pug = require("pug");
 const path = require("path");
 const fs = require("fs");
+const pretty = require("pretty");
 
 /**
  * @param arr an array in the form [{k: v1},{k, v2}] */
@@ -18,7 +19,8 @@ const compilePug = () => {
   const pugPath = path.join(__dirname, "..", "views");
   const pugFiles = fs.readdirSync(pugPath).filter(f => (f.endsWith(".pug") && f!=="default.pug"));
   pugFiles.forEach(f => {
-    const html = pug.renderFile(path.join(pugPath, f), { title: "Papyro" }, undefined);
+    let html = pug.renderFile(path.join(pugPath, f), { title: "Papyro" }, undefined);
+    html = pretty(html);
     const htmlFileName = f.replace(".pug", ".html");
     let tmpPath = (htmlFileName==="index.html") ? path.join(htmlPath, "..") : htmlPath;
     fs.writeFileSync(path.join(tmpPath, htmlFileName), html);
