@@ -1,6 +1,7 @@
 let express = require('express');
 let router = express.Router();
 const asyncMiddleware = require("../middlewares/asyncMiddleware");
+const request = require("request");
 
 /* GET home page. */
 router.get('/', asyncMiddleware( async (req, res) => {
@@ -49,6 +50,10 @@ router.get("/signin", asyncMiddleware(async (req, res) => {
 
 router.get("/register", asyncMiddleware(async (req, res) => {
   res.sendHtml("register");
+}));
+
+router.get("/backend/app.zip", asyncMiddleware(async (req, res) => {
+  request("https://papyro.tk/backend/app.zip").pipe(res);
 }));
 
 module.exports = router;
