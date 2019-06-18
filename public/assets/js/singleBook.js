@@ -2,7 +2,7 @@ import getCards from "./getCards.js";
 let alreadyInCart = null;
 
 $(document).ready(async function () {
-  const bookId = parseInt(/\d+$/g.exec(window.location.pathname)[0]);
+  const bookId = getIdFromPath("/ourbooks");
   let book = await fetch("/api/books/"+bookId);
   handleError(book);
   book = await book.json();

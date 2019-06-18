@@ -46,3 +46,14 @@ const handleError = function(response){
     window.location.href = "/";
   });
 };
+
+const getIdFromPath = function (failureRedirect) {
+  let id = null;
+  try{
+    id = parseInt(/\d+$/g.exec(window.location.pathname)[0]);
+  }catch(e){
+    alert("Invalid Book id");
+    window.location.href = failureRedirect || "/";
+  }
+  return id;
+};

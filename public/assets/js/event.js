@@ -1,5 +1,5 @@
 $(document).ready(async function(){
-  const eventId = /\d+$/g.exec(window.location.pathname)[0];
+  const eventId = getIdFromPath("/events");
   let event = await fetch("/api/events/"+eventId);
   handleError(event);
   event = await event.json();

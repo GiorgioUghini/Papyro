@@ -1,5 +1,5 @@
 $(document).ready(async function () {
-  const authorId = /\d+$/g.exec(window.location.pathname)[0];
+  const authorId = getIdFromPath("/authors");
   let author = await fetch("/api/authors/"+authorId);
   handleError(author);
   author = await author.json();
