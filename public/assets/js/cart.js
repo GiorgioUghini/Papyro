@@ -1,7 +1,7 @@
 $(document).ready(async function () {
   $("#emptyCart").hide();
   const token = Cookies.get("token");
-  if(!token) window.location.href = "/login";
+  if(!token) window.location.href = "/signin";
   let cart = await fetch("/api/reservations/cart", {
     method: "get",
     headers: new Headers({
