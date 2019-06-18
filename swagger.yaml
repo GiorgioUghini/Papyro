@@ -95,6 +95,12 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/Books'
+        '400':
+          description: One of the parameters is not valid
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
         '404':
           description: No book matched the filter
           content:
@@ -122,6 +128,12 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/Book'
+        '400':
+          description: The book id must be an integer
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Error'
         '404':
           description: No book with the given id
           content:

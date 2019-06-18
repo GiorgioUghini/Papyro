@@ -127,6 +127,7 @@ router.get("/bestsellers", asyncMiddleware(async (req, res, next) => {
 
 router.get("/:bookId", asyncMiddleware(async (req, res, next) => {
   const {bookId} = req.params;
+  if(isNaN(bookId)) throw createError(400, "Book id must be an integer");
   let book = await Book.findOne({
     where: {
       id: bookId
@@ -174,6 +175,9 @@ function createWhere(str){
   const where = {};
   if(!str || str==="0") return where;
   const arr = str.split(",");
+  arr.forEach(elem => {
+    if(isNaN(elem)) throw createError(400, "All ids have to be integers")
+  });
   where.id = {
     [Op.in]: arr
   };
