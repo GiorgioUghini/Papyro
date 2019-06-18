@@ -7,6 +7,9 @@ const { db, force } = require("../config");
 
 const dbOptions = {
   host: db.host,
+  define:{
+    timestamps: false
+  },
   port: db.port,
   dialect: 'postgres',
 

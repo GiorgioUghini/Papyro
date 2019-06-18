@@ -4,7 +4,7 @@ info:
   description: Hypermedia project for a library (2019)
   version: 1.0.0
 servers:
-  - url: https://papyro.tk/api
+  - url: https://papyro-hypermedia.herokuapp.com/api
     description: Base URL of the API server
 paths:
   /authors:
@@ -511,7 +511,8 @@ components:
           properties:
             books:
               type: array
-              $ref: '#components/schemas/BaseBook'
+              items:
+                $ref: '#components/schemas/BaseBook'
     BaseBook:
       type: object
       properties:
