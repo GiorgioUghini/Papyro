@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-EN">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Papyro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/carousel.css">
+    <link rel="stylesheet" href="/assets/css/index.css">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark"><a class="navbar-brand" href="/">PAPYRO</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active"><a class="nav-link" href="/">Home<span class="sr-only">(home)</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="/ourbooks">Our books</a></li>
+          <li class="nav-item"><a class="nav-link" href="/events">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="/authors">Authors</a></li>
+          <li class="nav-item"><a class="nav-link" href="/ordering">Ordering and Shipping</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contactus">Contact Us</a></li>
+        </ul><a class="button btn btn-outline-light my-2 login-show" id="cartButton" href="/cart">Cart</a><a class="button btn btn-outline-light my-2 login-hide" id="signinButton" href="/signin">Sign in</a><a class="button btn btn-outline-light my-2 login-show" id="signoutButton" href="/">Sign out</a><a class="button btn btn-outline-light my-2 login-hide" id="registerButton" href="/register">Register</a>
+      </div>
+    </nav>
+    <main role="main">
+      <div class="carousel slide" id="myCarousel" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li class="active" data-target="#myCarousel" data-slide-to="0"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="opaque-overlay"></div>
+          <div class="carousel-item active"><img class="first-slide" src="https://images.unsplash.com/photo-1488815812041-73ab30a49bb9?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80" alt="Something inside a basket">
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Your shopping cart</h1>
+                <p>Review your reservations and check out now!</p>
+                <p><a class="btn btn-lg btn-primary" href="/ourbooks" role="button">Add another book</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <h3 class="title my-5">All prices include VAT where applicable</h3>
+        <div id="cartTable"></div>
+        <div class="row justify-content-center"><button class="btn btn-primary w-100 col-md-4 col-lg-2" id="reserveButton">Reserve</button>
+          <p id="emptyCart">Nothing in your cart</p>
+        </div>
+      </div>
+      <div class="d-none" id="cartRow">
+        <div class="row justify-content-center cartRow" data-book-id="%bookId%">
+          <div class="col-11 col-md-6 border-bottom mb-3">
+            <p>%title%</p>
+          </div>
+          <div class="col-1 border-bottom mb-3"><button class="btn btn-danger removeButton" data-book-id="%bookId%">Remove</button></div>
+        </div>
+      </div>
+    </main>
+    <footer class="container">
+      <hr />
+      <div class="row">
+        <div class="col-12 col-md-4 links">
+          <h3>Links</h3>
+          <div class="links-container">
+            <p><a href="#">Latest products</a></p>
+            <p><a href="#">Require a gift card</a></p>
+            <p><a href="#">FAQ</a></p>
+          </div>
+        </div>
+        <div class="col-12 col-md-8 names">
+          <p>Made with ❤ by<a href="https://github.com/CosimoRusso" target="_blank"> Cosimo Russo </a>&<a href="https://github.com/GiorgioUghini" target="_blank"> Giorgio Ughini</a></p>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/cart.js"></script>
+
+</html>

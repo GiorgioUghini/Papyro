@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en-EN">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Papyro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/carousel.css">
+    <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="stylesheet" href="/assets/css/ourbooks.css">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark"><a class="navbar-brand" href="/">PAPYRO</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active"><a class="nav-link" href="/">Home<span class="sr-only">(home)</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="/ourbooks">Our books</a></li>
+          <li class="nav-item"><a class="nav-link" href="/events">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="/authors">Authors</a></li>
+          <li class="nav-item"><a class="nav-link" href="/ordering">Ordering and Shipping</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contactus">Contact Us</a></li>
+        </ul><a class="button btn btn-outline-light my-2 login-show" id="cartButton" href="/cart">Cart</a><a class="button btn btn-outline-light my-2 login-hide" id="signinButton" href="/signin">Sign in</a><a class="button btn btn-outline-light my-2 login-show" id="signoutButton" href="/">Sign out</a><a class="button btn btn-outline-light my-2 login-hide" id="registerButton" href="/register">Register</a>
+      </div>
+    </nav>
+    <main role="main">
+      <div class="carousel slide" id="myCarousel" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li class="active" data-target="#myCarousel" data-slide-to="0"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="opaque-overlay"></div>
+          <div class="carousel-item active"><img class="first-slide" src="https://images.unsplash.com/photo-1472173148041-00294f0814a2?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80" alt="Some old books in a book shelf">
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Our books</h1>
+                <p>Browse through our big catalog of books and get inspired!</p>
+                <p><a class="btn btn-lg btn-primary" href="/cart" role="button">Go to shopping cart</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="album">
+        <div class="container">
+          <div class="row filters my-3">
+            <div class="col-sm-6 col-md-4">
+              <div class="form-group"><select class="form-control" id="authorsSelect">
+                  <option value="0">All Authors</option>
+                </select></div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <div class="form-group"><select class="form-control" id="themesSelect">
+                  <option value="0">All Themes</option>
+                </select></div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <div class="form-group"><select class="form-control" id="genresSelect">
+                  <option value="0">All Genres</option>
+                </select></div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <div class="form-check"><input class="form-check-input" id="isFavoriteCheck" type="checkbox" /><label class="form-check-label" for="isFavoriteCheck">Our favorites</label></div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <div class="form-check"><input class="form-check-input" id="bestSellersCheck" type="checkbox" /><label class="form-check-label" for="bestSellersCheck">Best sellers</label></div>
+            </div>
+            <div class="col-sm-6 col-md-4"><button class="btn btn-primary w-100" id="submitFiltersBtn">Filter</button></div>
+          </div>
+          <h3 class="pb-3 mb-4 ce border-bottom">Here you are our books. Browse them but take your time. You need to relax.</h3>
+          <div class="d-flex flex-wrap justify-content-center row" id="cards-container">
+            <p id="noBooks">No book matches your criteria</p>
+          </div>
+        </div>
+      </div>
+      <div class="d-none">
+        <div class="d-none" id="card">
+          <div class="col-sm-6 col-md-6 col-lg-4 card-container">
+            <div class="card mb-4" data-book-id="%bookId%"><a href="/ourbooks/%bookId%"><img class="card-img-top" src="%picture%" alt="Small book cover" /></a>
+              <div class="card-body">
+                <h5 class="card-title">%title%</h5>
+                <p class="card-text">%abstract%</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group genres"></div>
+                </div>
+              </div>
+              <div class="card-footer"><a class="findOutMore w-100 mt-2 btn btn-primary" href="#" data-book-id="%bookId%">Find out more</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="d-none" id="genreButton"><button class="btn btn-sm btn-outline-secondary genre" type="button"></button></div>
+      </div>
+    </main>
+    <footer class="container">
+      <hr />
+      <div class="row">
+        <div class="col-12 col-md-4 links">
+          <h3>Links</h3>
+          <div class="links-container">
+            <p><a href="#">Latest products</a></p>
+            <p><a href="#">Require a gift card</a></p>
+            <p><a href="#">FAQ</a></p>
+          </div>
+        </div>
+        <div class="col-12 col-md-8 names">
+          <p>Made with ❤ by<a href="https://github.com/CosimoRusso" target="_blank"> Cosimo Russo </a>&<a href="https://github.com/GiorgioUghini" target="_blank"> Giorgio Ughini</a></p>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script type="module" src="assets/js/ourbooks.js"></script>
+
+</html>

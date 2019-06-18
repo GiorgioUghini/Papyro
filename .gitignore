@@ -1,9 +1,4 @@
 node_modules
 .idea
-public/assets/css
-public/pages/
-public/index.html
-public/backend/main.html
-public/backend/app.zip
 .env
 pandoc.sh

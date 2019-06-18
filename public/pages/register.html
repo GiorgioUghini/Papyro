@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-EN">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Papyro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/register.css">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark"><a class="navbar-brand" href="/">PAPYRO</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active"><a class="nav-link" href="/">Home<span class="sr-only">(home)</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="/ourbooks">Our books</a></li>
+          <li class="nav-item"><a class="nav-link" href="/events">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="/authors">Authors</a></li>
+          <li class="nav-item"><a class="nav-link" href="/ordering">Ordering and Shipping</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contactus">Contact Us</a></li>
+        </ul><a class="button btn btn-outline-light my-2 login-show" id="cartButton" href="/cart">Cart</a><a class="button btn btn-outline-light my-2 login-hide" id="signinButton" href="/signin">Sign in</a><a class="button btn btn-outline-light my-2 login-show" id="signoutButton" href="/">Sign out</a><a class="button btn btn-outline-light my-2 login-hide" id="registerButton" href="/register">Register</a>
+      </div>
+    </nav>
+    <main role="main">
+      <!--.container-->
+      <form class="needs-validation form-signin" id="register-form">
+        <div class="text-center mb-4">
+          <h1 class="h3 mb-3 font-weight-normal">Register now!</h1>
+          <p>Tons of useful feature such as <a href="/ourbooks">Book reservation!</a></p>
+        </div>
+        <div class="form-label-group"><input class="form-control" id="inputEmail" type="email" placeholder="Email address" required="" autofocus=""><label for="inputEmail">Email address</label></div>
+        <div class="form-label-group"><input class="form-control" id="inputPassword" type="password" placeholder="Password" required=""><label for="inputPassword">Password</label></div>
+        <div class="form-label-group"><input class="form-control" id="confirmPassword" type="password" placeholder="Password" required=""><label for="confirmPassword">Confirm password</label>
+          <p class="text-danger" id="confirm-psw-label" style="display: none">The two password doesn't match</p>
+        </div><button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+      </form>
+    </main>
+    <footer class="container">
+      <hr />
+      <div class="row">
+        <div class="col-12 col-md-4 links">
+          <h3>Links</h3>
+          <div class="links-container">
+            <p><a href="#">Latest products</a></p>
+            <p><a href="#">Require a gift card</a></p>
+            <p><a href="#">FAQ</a></p>
+          </div>
+        </div>
+        <div class="col-12 col-md-8 names">
+          <p>Made with ❤ by<a href="https://github.com/CosimoRusso" target="_blank"> Cosimo Russo </a>&<a href="https://github.com/GiorgioUghini" target="_blank"> Giorgio Ughini</a></p>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script src="assets/js/register.js"></script>
+
+</html>
